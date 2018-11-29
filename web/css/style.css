@@ -1,0 +1,111 @@
+/* Custom Stylesheet */
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
+.box-shadow-none {
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+}
+/**************/
+.icon-block {
+  padding: 0 15px;
+}
+.icon-block .material-icons {
+	font-size: inherit;
+}
+
+/***************/
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    font-family: Open Sans,Helvetica Neue,Helvetica,Arial,sans-serif;
+    color: #555;
+}
+
+main {
+    flex: 1 0 auto;
+    font-size: 16px;
+}
+
+nav {
+    line-height: 40px;
+}
+nav .nav-wrapper {
+    padding: 10px;
+    border-bottom: 4px solid #4695d0;
+}
+
+nav .brand-logo{
+    margin-left:20px;
+    font-size: 22px;
+}
+
+.breadcrumb {
+    font-size: 16px;
+    line-height: 25px;
+    margin: 30px 0 20px 0;
+}
+.breadcrumb:before{
+    color: #0f0f0f;
+}
+.page-footer {
+    margin-top: 30px;
+}
+footer{
+    border-top: 2px solid #1a237e;
+    font-size: 14px;
+}
+nav .nav-wrapper ul li:last-child a{
+    border-left: 2px solid #4695d0;
+}
+.footer-copyright {
+    border-top: 1px solid rgba(0, 0, 0, .1);
+}
+.card{
+    background-color: #F7F7F9;
+    font-size: 14px;
+}
+.card.case .p{
+    font-size: 16px;
+}
+.card .card-title{
+    font-size: 18px;
+}
+.collection a{
+    color: #555;
+}
+.collection .note{
+    font-size: 14px;
+    color: #888;
+    margin-bottom: 0;
+}
+.collection .collection-item{
+    padding: 20px 30px;
+}
+.collection .title{
+    line-height: 24px;
+}
+.tabs .indicator {
+    background-color: #ff6d00;
+}
+.training .tabs .indicator {
+    background-color: #4a148c;
+}
+.testing .tabs .indicator {
+    background-color: #00897b ;
+}
+.tabs .tab a:focus, .tabs .tab a:focus.active {
+    background-color: #f0f0f0;
+}
+
+nav ul li.active {
+    background-color: rgba(0, 0, 0, 0.3);
+    border-bottom: 10px rgba(0, 0, 0, 0) solid;
+    border-top: 10px rgba(0, 0, 0, 0) solid;
+    margin-top: -10px;
+}
