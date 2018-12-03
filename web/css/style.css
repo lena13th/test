@@ -109,3 +109,6 @@ nav ul li.active {
     border-top: 10px rgba(0, 0, 0, 0) solid;
     margin-top: -10px;
 }
+label{
+    color:#555555;
+}

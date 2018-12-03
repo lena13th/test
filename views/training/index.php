@@ -2,6 +2,7 @@
 use yii\helpers\Url;
 
 $this->params['active_page'][] = 'training';
+$this->title = 'Обучение';
 
 ?>
 

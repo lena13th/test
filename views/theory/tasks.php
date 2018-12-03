@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 $this->params['active_page'][] = 'theory';
+$this->title = 'Теория';
 
 ?>
 

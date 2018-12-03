@@ -1,6 +1,7 @@
 <?php
 use yii\helpers\Url;
 $this->params['active_page'][] = 'testing';
+$this->title = 'Проверка знаний';
 
 ?>
 

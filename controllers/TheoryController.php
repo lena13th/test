@@ -36,13 +36,12 @@ class TheoryController extends Controller
         $tasks = $case->tasks;
         foreach ($tasks as $task){
             $letters[] = $task->letters;
-            $answers[] = $task->answers;
         }
 
         $resources = $case->resources;
         $grf= Skills::findOne($grf);
 
-        return $this->render('tasks', compact('tasks', 'case', 'grf', 'resources','letters','answers'));
+        return $this->render('tasks', compact('tasks', 'case', 'grf', 'resources','letters'));
     }
 
 }

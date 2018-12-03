@@ -4,6 +4,7 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 
 $this->params['active_page'][] = 'training';
+$this->title = 'Обучение';
 
 ?>
 
@@ -21,8 +22,6 @@ $this->params['active_page'][] = 'training';
     <div class="card-content">
         <p class="card-title center-align"><?=$case->name?></p>
         <p><?=$case->note?></p><br>
-
-
 
         <?php if( !empty($resources) ): ?>
 
@@ -69,13 +68,53 @@ $this->params['active_page'][] = 'training';
             <div id="<?='test' . $task->id?>">
                 <p><b><?= $task->text ?></b></p><br>
 
-                <?php if( !empty($letters[$key]) ): ?>
-                    <?php foreach ($letters[$key] as $letter): ?>
-                        <p class="h5 center-align"><?=$letter->name?></p>
-                        <p ><?=$letter->text?></p>
-                    <?php endforeach;?>
+                <?php if( !empty($answers[$key]) ): ?>
+                    <?php if ($task->type ==1):?>
+                        <span>Выберите один ответ:</span>
+                        <?php foreach ($answers[$key] as $answer): ?>
+                            <p>
+                                <label>
+                                    <input name="<?='test' . $task->id?>" type="radio" />
+                                    <span ><?= $answer->text ?></span>
+                                </label>
+                            </p>
+                        <?php endforeach;?>
+                    <?php elseif ($task->type ==2):?>
+                        <span>Выберите один или несколько ответов:</span>
+                        <?php foreach ($answers[$key] as $answer): ?>
+                        <p>
+                            <label>
+                                <input type="checkbox" class="filled-in"/>
+                                <span><?= $answer->text ?></span>
+                            </label>
+                        </p>
+                        <?php endforeach;?>
+
+                    <?php elseif ($task->type ==3):?>
+                        <span>Укажите правильную последовательность:</span>
+                        <?php
+                        for ($i = 1; $i <= count($answers[$key]); $i++) {
+                            ?>
+                            <div class="row">
+                                <span><?=$i.'. '  ?></span>
+                                <div class="input-field col s12">
+                                    <select>
+                                        <option value="" disabled selected>Выберите ответ</option>
+                                        <?php foreach ($answers[$key] as $keyansw=>$answer): ?>
+                                            <option value="<?= $keyansw ?>"><?= $answer->text ?></option>
+                                        <?php endforeach;?>
+                                    </select>
+                                </div>
+                                <?= $task->type ?>
+                            </div>
+                        <?php }?>
+
+
+                    <?php elseif ($task->type ==4):?>
+                        <span>Установите соответствие:</span>
+                    <?php endif; ?>
                 <?php else: ?>
-                    <span class="grey-text text-lighten-1">Теория по данному вопросу еще не добавлена</span>
+                    <span class="grey-text text-lighten-1">Варианты ответа пока не добавлены</span>
                 <?php endif; ?>
 
 
