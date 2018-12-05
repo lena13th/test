@@ -1,13 +1,15 @@
 <?php
 
 namespace app\models;
+use Yii;
 use yii\db\ActiveRecord;
 
 class User extends ActiveRecord implements \yii\web\IdentityInterface
+
 {
 
     public static function tableName(){
-        return 'users';
+        return 'userstable';
     }
 
     /**
@@ -73,6 +75,8 @@ class User extends ActiveRecord implements \yii\web\IdentityInterface
     public function validatePassword($password)
     {
 //        return $this->password === $password;
+        $this->password = Yii::$app->getSecurity()->generatePasswordHash($this->password);
+
         return \Yii::$app->security->validatePassword($password, $this->password);
     }
 

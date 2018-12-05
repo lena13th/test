@@ -16,35 +16,41 @@ $this->title = 'Теория';
     <a class="breadcrumb grey-text text-lighten-1"><?=$case->name?></a>
 </div>
 
-
 <div class="card box-shadow-none case">
     <div class="card-content">
         <p class="card-title center-align"><?=$case->name?></p>
         <p><?=$case->note?></p><br>
 
 
-
         <?php if( !empty($resources) ): ?>
 
             <p><b>Информационная часть:</b></p>
-            <?php $n=0;
-            foreach ($resources as $resource):
-                $n++;?>
-                <?php if( $resource->style == 2 ):?>
-                    <p><?= $n.'. '.$resource->name.': '?></p>
+            <?php foreach ($resources as $key=>$resource):
+                $key++; ?>
+                <?php if( $resource->type == 0 ):?>
+                    <p><?= $key.'. '.$resource->name.': '?></p>
                     <div class="center-align">
-                <?= Html::img('@web/files/'.$resource->link, ['alt' => $resource->name]) ?>
+                        <?= Html::img('@web/files/'.$resource->link, ['alt' => $resource->name]) ?>
                     </div>
                 <?php else:
                     $file = Yii::getAlias('@web/files/1.png');
 //                    return Yii::$app->response->sendFile($file);
 
                     ?>
-
+                    <p>
+                        <?=$key.'. '?>
+                        <?= Html::a($resource->name, ['@web/files/'.$resource->link], ['target' => '_blank']) ?>
+                    </p>
 
                 <?php endif; ?>
             <?php endforeach;?>
         <?php endif; ?>
+
+        <div class="right-align">
+            <a class="waves-effect waves-light btn orange lighten-3 right-align"
+               href="<?= Url::to(['/training/tasks', 'id'=>$case->id, 'grf'=>$grf->id]) ?>">Перейти к обучению</a>
+        </div>
+
     </div>
 
 
@@ -55,7 +61,7 @@ $this->title = 'Теория';
         foreach ($tasks as $task):
             $i++;
             ?>
-            <li class="tab"><a href="<?='#test' . $task->id?>" class="orange-text text-accent-2">Вопрос <?=$i?></a></li>
+            <li class="tab"><a href="<?='#test' . $task->id?>" class="orange-text text-accent-2">Теория по вопросу <?=$i?></a></li>
         <?php endforeach;?>
             </ul>
         </div>
@@ -84,33 +90,15 @@ $this->title = 'Теория';
         </div>
     <?php endif; ?>
 
-<!--    <div class="card-tabs">-->
-<!--        <ul class="tabs tabs-fixed-width">-->
-<!---->
-<!--            <li class="tab"><a href="#test4">Test 1</a></li>-->
-<!--            <li class="tab"><a class="active" href="#test5">Test 2</a></li>-->
-<!--            <li class="tab"><a href="#test6">Test 3</a></li>-->
-<!--        </ul>-->
-<!--    </div>-->
-<!--    <div class="card-content grey lighten-4">-->
-<!--        <div id="test4">Test 1</div>-->
-<!--        <div id="test5">Test 2</div>-->
-<!--        <div id="test6">Test 3</div>-->
-<!--    </div>-->
-<!--</div>-->
 
+<?php
+$js = <<<JS
+window.onload = function() {
+    if (window.location.hash.indexOf('#') !== -1){
+        M.toast({html: 'Вы ответили неверно. Необходимо изучить теорию по данному вопросу'})
+    }
+};
+JS;
 
-
-
-<?php //if( !empty($tasks) ): ?>
-<!---->
-<!--    --><?php //foreach ($tasks as $task): ?>
-<!--        --><?//= $task->text ?>
-<!--        <a href="--><?//= Url::to(['/theory/task', 'id'=>$task->id]) ?><!--" class="btn btn-default" role="button">Перейти к теории по вопросу</a>-->
-<!--        <br>-->
-<!--    --><?php //endforeach;?>
-<?php //else: ?>
-<!--    <span class="h2">Ничего не найдено</span>-->
-<!--    <a class="btn  btn-primary" href="--><?//= Url::to(['/site/index']) ?><!--"><span>Вернуться на главную</span></a>-->
-<?php //endif; ?>
-
+$this->registerJs($js);
+?>

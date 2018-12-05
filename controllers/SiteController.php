@@ -4,6 +4,7 @@ namespace app\controllers;
 
 use app\models\LoginForm;
 use app\models\Skills;
+use app\models\User;
 use Yii;
 use yii\caching\DbDependency;
 use yii\web\Controller;
@@ -20,15 +21,14 @@ class SiteController extends Controller
         return $this->render('index');
     }
 
-    public function actionTesting()
-    {
-        return $this->render('testing');
-    }
-
     public function actionLogin()
     {
         if (!Yii::$app->user->isGuest) {
-            return $this->goHome();
+//            return $this->goHome();
+            $id = Yii::$app->user->id;
+            $user = User::findOne($id);
+            return $this->render('lk', compact('user'));
+
         }
         // $this->layout = false;
         $model = new LoginForm();

@@ -15,17 +15,18 @@ class LoginForm extends Model
 
     private $_user = false;
 
-
     /**
      * @return array the validation rules.
      */
     public function rules()
     {
         return [
-            [['login', 'type'], 'integer'],
-            [['f_name', 'l_name', 'm_name', 'password'], 'required'],
-            [['f_name', 'l_name', 'm_name', 'password'], 'string'],
-            [['login'], 'unique'],
+            [['login'], 'integer'],
+//            [['login', 'type'], 'integer'],
+            [['login', 'password'], 'required'],
+//            [['f_name', 'l_name', 'm_name', 'password'], 'required'],
+//            [['f_name', 'l_name', 'm_name', 'password'], 'string'],
+//            [['login'], 'unique'],
             ['password', 'validatePassword'],
 
         ];
@@ -35,11 +36,11 @@ class LoginForm extends Model
         return [
             'id' => 'ID',
             'login' => 'Логин',
-            'f_name' => 'Фамилия',
-            'l_name' => 'Имя',
-            'm_name' => 'Отчество',
+//            'f_name' => 'Фамилия',
+//            'l_name' => 'Имя',
+//            'm_name' => 'Отчество',
             'password' => 'Пароль',
-            'type' => 'Роль пользователя',
+//            'type' => 'Роль пользователя',
         ];
     }
 
@@ -68,12 +69,7 @@ class LoginForm extends Model
     public function login()
     {
         if ($this->validate()) {
-            if($this->rememberMe){
-                $u = $this->getUser();
-                $u->generateAuthKey();
-                $u->save();
-            }
-            return Yii::$app->user->login($this->getUser(), $this->rememberMe ? 3600*24*30 : 0);
+            return Yii::$app->user->login($this->getUser());
         }
         return false;
     }
@@ -81,7 +77,7 @@ class LoginForm extends Model
     /**
      * Finds user by [[username]]
      *
-     * @return User|null
+     * @return php|null
      */
     public function getUser()
     {

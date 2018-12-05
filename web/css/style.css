@@ -102,7 +102,9 @@ nav .nav-wrapper ul li:last-child a{
 .tabs .tab a:focus, .tabs .tab a:focus.active {
     background-color: #f0f0f0;
 }
-
+.tab.disabled{
+    background-color: #eee;
+}
 nav ul li.active {
     background-color: rgba(0, 0, 0, 0.3);
     border-bottom: 10px rgba(0, 0, 0, 0) solid;
@@ -111,4 +113,33 @@ nav ul li.active {
 }
 label{
     color:#555555;
+}
+
+[type="checkbox"] + span:not(.lever) {
+    line-height: unset;
+}
+.choice_answers{
+    padding: 20px 0;
+}
+
+.row_choice_answers div{
+display: inline-block;
+}
+.row.answer{
+    margin-bottom: 0;
+}
+.btn.answer{
+    margin-top: 15px;
+}
+.test_result_h{
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.login .row {
+    margin-bottom: 0px;
+}
+.login .input-field {
+    margin-top: 1rem;
+    margin-bottom: 0rem;
 }

@@ -69,7 +69,9 @@ AppAsset::register($this);
             }
             ?>
             >
-                <a href="<?= Url::to(['site/login'])?>">Вход/регистрация</a>
+                <a href="<?= Url::to(['site/login'])?>"><?php if (Yii::$app->user->isGuest) {echo 'Вход/регистрация';}
+                    else {echo 'Личный кабинет';}
+                    ?></a>
             </li>
         </ul>
     </div>
@@ -112,9 +114,9 @@ AppAsset::register($this);
             <div class="col l4 offset-l2 s12">
                 <h6>Карта сайта</h6>
                 <ul>
-                    <li><a class="grey-text text-darken-2" href="theory.html">Теория</a></li>
-                    <li><a class="grey-text text-darken-2" href="training.html">Обучение</a></li>
-                    <li><a class="grey-text text-darken-2" href="testing.html">Проверка знаний</a></li>
+                    <li><a class="grey-text text-darken-2" href="<?= Url::to(['theory/index'])?>">Теория</a></li>
+                    <li><a class="grey-text text-darken-2" href="<?= Url::to(['training/index'])?>">Обучение</a></li>
+                    <li><a class="grey-text text-darken-2" href="<?= Url::to(['testing/index'])?>">Проверка знаний</a></li>
                 </ul>
             </div>
         </div>
