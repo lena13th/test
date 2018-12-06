@@ -109,7 +109,7 @@ AppAsset::register($this);
     <div class="container ">
         <div class="row grey-text text-darken-2">
             <div class="col l6 s12">
-                <p>Данная система предназначена для обучения и проверки знаний учеников.</p>
+                <p>Данная система предназначена для обучения и проверки знаний студентов.</p>
             </div>
             <div class="col l4 offset-l2 s12">
                 <h6>Карта сайта</h6>
@@ -124,7 +124,7 @@ AppAsset::register($this);
     <div class="footer-copyright white grey-text text-darken-2 container">
         <div>
             <span class="right-align">
-            2018 Разработал ученик __ группы Фаскин Виктор.
+            2018  Разработал студент 41-15 группы Фаскин Виктор.
             </span>
         </div>
     </div>

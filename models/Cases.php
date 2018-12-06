@@ -74,9 +74,9 @@ class Cases extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getResultstables()
+    public function getResults()
     {
-        return $this->hasMany(Resultstable::className(), ['caseid' => 'id']);
+        return $this->hasMany(Results::className(), ['caseid' => 'id']);
     }
 
     /**

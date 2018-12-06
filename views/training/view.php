@@ -3,6 +3,9 @@ use yii\helpers\Url;
 $this->params['active_page'][] = 'training';
 $this->title = 'Обучение';
 
+if (Yii::$app->user->isGuest) {
+    return Yii::$app->response->redirect(['site/login']);
+}
 ?>
 
 <div class="col s12 nav-wrapper valign-wrapper breadcrumbs">
@@ -28,8 +31,10 @@ $this->title = 'Обучение';
 
     </ul>
 <?php else: ?>
-    <span class="h2">Ничего не найдено</span>
-    <a class="btn  btn-primary" href="<?= Url::to(['/site/login']) ?>"><span>Вернуться на главную</span></a>
+    <div class="row center-align nothing_found">
+        <p>Ничего не найдено</p>
+        <a class="btn  btn-primary" href="<?= Url::to(['/site/login']) ?>"><span>Вернуться на главную</span></a><br>
+    </div>
 <?php endif; ?>
 
 

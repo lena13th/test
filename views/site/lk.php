@@ -5,6 +5,9 @@ use yii\helpers\Url;
 
 $this->title = 'Система дистанционного обучения';
 
+if (Yii::$app->user->isGuest) {
+    return Yii::$app->response->redirect(['site/login']);
+}
 ?>
 
 <!--<div class="col s12 nav-wrapper valign-wrapper">-->
@@ -24,6 +27,11 @@ $this->title = 'Система дистанционного обучения';
                         <a class="lk_a collection-item" href="<?= Url::to(['training/index'])?>">Начать обучение</a>
                         <a class="lk_a collection-item" href="<?= Url::to(['testing/index'])?>">Проверить знания</a>
                     </ul>
+
+                    <ul class="collection a_admin">
+                        <a class="lk_a collection-item" href="<?= Url::to(['site/result'])?>">Посмотреть результаты тестирования</a>
+                    </ul>
+
                     <?php if ($user->type ==2) { ?>
 
                     <ul class="collection a_admin">

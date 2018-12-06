@@ -2,6 +2,9 @@
 use yii\helpers\Url;
 $this->params['active_page'][] = 'theory';
 $this->title = 'Теория';
+if (Yii::$app->user->isGuest) {
+    return Yii::$app->response->redirect(['site/login']);
+}
 
 ?>
 
@@ -28,8 +31,10 @@ $this->title = 'Теория';
 
     </ul>
 <?php else: ?>
-    <span class="h2">Ничего не найдено</span>
-    <a class="btn  btn-primary" href="<?= Url::to(['/site/login']) ?>"><span>Вернуться на главную</span></a>
+    <div class="row center-align nothing_found">
+        <p>Ничего не найдено</p>
+        <a class="btn  btn-primary" href="<?= Url::to(['/site/login']) ?>"><span>Вернуться на главную</span></a><br>
+    </div>
 <?php endif; ?>
 
 

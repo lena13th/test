@@ -4,7 +4,9 @@ namespace app\controllers;
 
 use app\models\Answers;
 use app\models\Cases;
+use app\models\Results;
 use app\models\Skills;
+use app\models\User;
 use Yii;
 use yii\web\Controller;
 
@@ -133,6 +135,16 @@ class TestingController extends Controller
 
         if ((int) $session[$cc.'kol_task']==(int) $session[$cc.'kol']){
             // закрываем сессию
+
+            $result = new Results();
+            $result->userid = Yii::$app->user->id;
+            $result->caseid = $data["caseid"];
+            $result->mark = ($session[$cc.'sum']*100)/$session[$cc.'kol'];
+            $result->s_time = 0;
+            $result->f_time = 0;
+
+            $result->save();
+
             unset($session[$cc.'tabs']);
             unset($session[$cc.'sum']);
             unset($session[$cc.'kol']);

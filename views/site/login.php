@@ -2,6 +2,7 @@
 
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
+use yii\helpers\Url;
 
 $this->title = 'Система дистанционного обучения';
 
@@ -11,18 +12,16 @@ $this->title = 'Система дистанционного обучения';
 <div class="row login">
 <!--    <form class="col s12">-->
         <div class="row">
-            <br>
-            <br>
-            <p class="center-align">Пожалуйста, введите свои данные:</p>
+            <br><br><p class="center-align">Пожалуйста, введите свои данные:</p>
         </div>
 
                 <?php $form = ActiveForm::begin([
-                    'id' => 'login-form',
+//                    'id' => 'login-form',
                     // 'layout' => 'horizontal',
-                    'fieldConfig' => [
-                        'template' => "{label}\n<div>{input}</div>\n<div>{error}</div>",
-                        'labelOptions' => ['class' => 'control-label'],
-                    ],
+//                    'fieldConfig' => [
+//                        'template' => "{label}\n<div>{input}</div>\n<div>{error}</div>",
+//                        'labelOptions' => ['class' => 'control-label'],
+//                    ],
                 ]); ?>
 <!--                --><?php // Yii::$app->getSecurity()->generatePasswordHash('123');?>
 
@@ -45,52 +44,23 @@ $this->title = 'Система дистанционного обучения';
                     <div>
                         <?= Html::submitButton('Войти', ['class' => 'btn btn-success', 'name' => 'login-button']) ?>
                     </div>
+                    <div class="text_signup">
+                        <a href="<?= Url::to(['/site/signup'])?>"> Зарегистрироваться</a>
+                    </div>
                 </div>
 
                 <?php ActiveForm::end(); ?>
 
-<!--        <div class="row center-align">-->
-<!--            <div class="input-field col offset-s3 s6">-->
-<!--                <input id="login" type="text" class="validate">-->
-<!--                <label for="login">Логин</label>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <div class="row center-align">-->
-<!--            <div class="input-field col offset-s3 s6">-->
-<!--                <input id="password" type="password" class="validate">-->
-<!--                <label for="password">Пароль</label>-->
-<!--            </div>-->
-<!--        </div>-->
-<!--        <div class="center-align">-->
-<!--            <button class="btn waves-effect waves-light" type="submit" name="action">Войти</button>-->
-<!--        </div>-->
-<!--    </form>-->
 </div>
 
+<?php
+$js = <<<JS
+window.onload = function() {
+    if (window.location.hash.indexOf('#') !== -1){
+        M.toast({html: 'Вы успешно зарегистрировались. Пожалуйста, войдите под своим логином и паролем'})
+    }
+};
+JS;
 
-
-<!--<div class="site-login container">-->
-<!--    --><?php //// Yii::$app->getSecurity()->generatePasswordHash('123');?>
-<!--    <div class="col-xs-12 col-sm-8 col-md-6 col-lg-4">-->
-<!--        <h1>--><?//= Html::encode($this->title) ?><!--</h1>-->
-<!---->
-<!--        <p>Пожалуйста заполните поля логин и пароль:</p>-->
-<!---->
-<!---->
-<!--        --><?//= $form->field($model, 'username')->textInput(['autofocus' => true]) ?>
-<!---->
-<!--        --><?//= $form->field($model, 'password')->passwordInput() ?>
-<!---->
-<!--        --><?//= $form->field($model, 'rememberMe')->checkbox([
-//            'template' => "<div>{input} {label}</div>\n<div>{error}</div>",
-//        ]) ?>
-<!---->
-<!--        <div class="form-group">-->
-<!--            <div>-->
-<!--                --><?//= Html::submitButton('Войти', ['class' => 'btn btn-success', 'name' => 'login-button']) ?>
-<!--            </div>-->
-<!--        </div>-->
-<!---->
-<!--        --><?php //ActiveForm::end(); ?>
-<!--    </div>-->
-<!--</div>-->
+$this->registerJs($js);
+?>

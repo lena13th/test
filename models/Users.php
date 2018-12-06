@@ -59,8 +59,8 @@ class Users extends \yii\db\ActiveRecord
     /**
      * @return \yii\db\ActiveQuery
      */
-    public function getResultstables()
+    public function getResults()
     {
-        return $this->hasMany(Resultstable::className(), ['userid' => 'id']);
+        return $this->hasMany(Results::className(), ['userid' => 'id']);
     }
 }

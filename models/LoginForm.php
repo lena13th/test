@@ -24,7 +24,7 @@ class LoginForm extends Model
 //            [['login'], 'integer'],
             [['login'], 'string'],
 //            [['login', 'type'], 'integer'],
-            [['login', 'password'], 'required'],
+            [['login', 'password'], 'required',  'message' => 'Поле не может быть пустым'],
 //            [['f_name', 'l_name', 'm_name', 'password'], 'required'],
 //            [['f_name', 'l_name', 'm_name', 'password'], 'string'],
 //            [['login'], 'unique'],

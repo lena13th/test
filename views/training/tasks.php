@@ -2,10 +2,14 @@
 
 use yii\helpers\Html;
 use yii\helpers\Url;
+if (Yii::$app->user->isGuest) {
+    return Yii::$app->response->redirect(['site/login']);
+}
 
 $this->params['active_page'][] = 'training';
 $this->title = 'Обучение';
 
+$session = Yii::$app->session;
 ?>
 
 
@@ -17,10 +21,20 @@ $this->title = 'Обучение';
     <a class="breadcrumb grey-text text-lighten-1"><?=$case->name?></a>
 </div>
 
+<?php
+$tr_cc = 'training.cases'.$case->id.'.';
+?>
     <div
             class='hidden'
             caseid='<?= $case->id ?>'
             grfid='<?= $grf->id ?>'
+            tr_tab_1="<?='test' . $tasks[0]->id?>"
+            tr_tabs='<?=$session[$tr_cc.'tabs'] ?>'
+            tr_cc='<?=$tr_cc ?>'
+            tr_kol='<?=$session[$tr_cc.'kol'] ?>'
+            tr_kol_task='<?=$session[$tr_cc.'kol_task'] ?>'
+
+
     ></div>
 
 <div class="card box-shadow-none case">
@@ -75,8 +89,10 @@ $this->title = 'Обучение';
             </ul>
         </div>
     <?php else: ?>
-        <span class="h2">Ничего не найдено</span>
-        <a class="btn  btn-primary" href="<?= Url::to(['/site/login']) ?>"><span>Вернуться на главную</span></a>
+    <div class="row center-align nothing_found">
+        <p>Ничего не найдено</p>
+        <a class="btn  btn-primary" href="<?= Url::to(['/site/login']) ?>"><span>Вернуться на главную</span></a><br>
+    </div>
     <?php endif; ?>
     <?php if( !empty($tasks) ): ?>
         <div class="card-content grey lighten-4">
@@ -228,12 +244,30 @@ $this->title = 'Обучение';
 
 <?php
 $js = <<<JS
+
+var tabs = document.getElementsByClassName('tabs')[0];
+var instance = M.Tabs.getInstance(tabs);
+var first_tabs = document.getElementsByClassName('hidden')[0].getAttribute('tr_tabs');
+var tab_1 = document.getElementsByClassName('hidden')[0].getAttribute('tr_tab_1');
+if (first_tabs===''){first_tabs = tab_1}
+
+if (first_tabs!=tab_1){
+    document.getElementsByClassName(tab_1)[0].classList.add('disabled');
+    document.getElementsByClassName(first_tabs)[0].classList.remove('disabled');
+    instance.select(first_tabs);
+}
+
+// var kol = document.getElementsByClassName('hidden')[0].getAttribute('kol');
+// if (kol===''){kol = 0}
+var tr_cc = document.getElementsByClassName('hidden')[0].getAttribute('tr_cc');
+
+
     $('.answerbutton').click(function(){
         this.classList.add('disabled');
         var nametest = this.getAttribute('about');
         var test = document.getElementById(nametest);
-        var tabs = document.getElementsByClassName('tabs')[0];
-        var instance = M.Tabs.getInstance(tabs);
+        // var tabs = document.getElementsByClassName('tabs')[0];
+        // var instance = M.Tabs.getInstance(tabs);
 
         var caseid = document.getElementsByClassName('hidden')[0].getAttribute('caseid');
         var grfid = document.getElementsByClassName('hidden')[0].getAttribute('grfid');
@@ -244,6 +278,7 @@ $js = <<<JS
         data.type = type;
         data.caseid = caseid;
         data.grfid = grfid;
+        data.tr_cc = tr_cc;
         var full_selected=1;
         
         if (type == 1){

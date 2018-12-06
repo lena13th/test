@@ -44,22 +44,31 @@ class TrainingController extends Controller
         $resources = $case->resources;
         $grf= Skills::findOne($grf);
 
+        $session = Yii::$app->session;
+        // открываем сессию
+        $session->open();
+        $tr_cc = 'training.cases'.$id.'.';
+        $session[$tr_cc.'kol_task'] = count($tasks);
+
+
         return $this->render('tasks', compact('tasks', 'case', 'grf', 'resources','letters','answers'));
     }
 
     public function actionCheck()
     {
+        $session = Yii::$app->session;
+
         $data = Yii::$app->request->post('data');
         $data = json_decode($data, true);
 
         if ($data["type"] == 1){
             $answer = Answers::findOne($data["answer"]);
-            if ($answer->correct == 0){
-                $name = 'test'.$data["task"];
-                return Yii::$app->response->redirect(['theory/tasks', 'id'=>$data["caseid"], 'grf'=>$data["grfid"], '#' => $name]);
-            }
-            return $answer->correct;
-
+//            if ($answer->correct == 0){
+//                $name = 'test'.$data["task"];
+//                return Yii::$app->response->redirect(['theory/tasks', 'id'=>$data["caseid"], 'grf'=>$data["grfid"], '#' => $name]);
+//            }
+//            return $answer->correct;
+            $ret = $answer->correct;
         } elseif ($data["type"] == 2){
             $correct_answers = Answers::find()
                 ->where(['taskid' => $data["task"]])
@@ -77,10 +86,12 @@ class TrainingController extends Controller
                 }
             }
             if (empty($answer) && empty($correct_answers_copy)) {
-                return '1';
+//                return '1';
+                $ret = 1;
             } else {
-                $name = 'test'.$data["task"];
-                return Yii::$app->response->redirect(['theory/tasks', 'id'=>$data["caseid"], 'grf'=>$data["grfid"], '#' => $name]);
+                $ret = 0;
+//                $name = 'test'.$data["task"];
+//                return Yii::$app->response->redirect(['theory/tasks', 'id'=>$data["caseid"], 'grf'=>$data["grfid"], '#' => $name]);
             }
         } elseif ($data["type"] == 3){
             $all_answers = Answers::find()
@@ -95,12 +106,13 @@ class TrainingController extends Controller
                     $right_decision = 0;
                 }
             }
-            if ($right_decision == 1) {
-                return '1';
-            } else {
-                $name = 'test'.$data["task"];
-                return Yii::$app->response->redirect(['theory/tasks', 'id'=>$data["caseid"], 'grf'=>$data["grfid"], '#' => $name]);
-            }
+            $ret = $right_decision;
+//            if ($right_decision == 1) {
+//                return '1';
+//            } else {
+//                $name = 'test'.$data["task"];
+//                return Yii::$app->response->redirect(['theory/tasks', 'id'=>$data["caseid"], 'grf'=>$data["grfid"], '#' => $name]);
+//            }
 
 
         } elseif ($data["type"] == 4){
@@ -119,12 +131,44 @@ class TrainingController extends Controller
                     $right_decision = 0;
                 }
             }
-            if ($right_decision == 1) {
-                return '1';
+            $ret = $right_decision;
+
+//            if ($right_decision == 1) {
+//                return '1';
+//            } else {
+//                $name = 'test'.$data["task"];
+//                return Yii::$app->response->redirect(['theory/tasks', 'id'=>$data["caseid"], 'grf'=>$data["grfid"], '#' => $name]);
+//            }
+        } else { $ret = 0;}
+
+
+
+        $tr_cc = $data["tr_cc"];
+        if (!isset($session[$tr_cc.'kol'])) {$session[$tr_cc.'kol'] = 0;}
+
+        $session[$tr_cc.'kol'] = $session[$tr_cc.'kol']+1;
+
+
+        if ($ret) {
+            if ((int) $session[$tr_cc.'kol_task']==(int) $session[$tr_cc.'kol']){
+                // закрываем сессию
+                unset($session[$tr_cc.'tabs']);
+                unset($session[$tr_cc.'kol']);
+
+                $session->close();
+                // уничтожаем сессию и все связанные с ней данные.
+                $session->destroy();
             } else {
-                $name = 'test'.$data["task"];
-                return Yii::$app->response->redirect(['theory/tasks', 'id'=>$data["caseid"], 'grf'=>$data["grfid"], '#' => $name]);
+                $task_next = $data["task"] + 1;
+                $session[$tr_cc.'tabs'] = 'test' . $task_next;
             }
+
+            return $ret;
+        } else {
+
+            $name = 'test'.$data["task"];
+            return Yii::$app->response->redirect(['theory/tasks', 'id'=>$data["caseid"], 'grf'=>$data["grfid"], '#' => $name]);
+
         }
 
             return $this->render('tasks', compact('result'));
