@@ -3,8 +3,7 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 
-$this->title = 'Личный кабинет';
-$this->params['active_page'][] = 'lk';
+$this->title = 'Система дистанционного обучения';
 
 ?>
 
@@ -36,11 +35,11 @@ $this->params['active_page'][] = 'lk';
             </div>
             <div class="col s12 m6">
                 <div class="card white">
-                    <div class="card-image">
+                    <div class="card-image lk_image">
                         <?= Html::img('@web/img/account.png',['class'=>'account_img']) ?>
                     </div>
                     <div class="card-content center-align info_user">
-                        <p><span>Логин:</span> <?= $user->login; ?></p>
+                        <p class="login"><span > <?= $user->login; ?></span></p>
                         <p><span>Фамилия:</span> <?= $user->f_name; ?></p>
                         <p><span>Имя:</span> <?= $user->l_name; ?></p>
                         <p><span>Отчество:</span> <?= $user->m_name; ?></p>

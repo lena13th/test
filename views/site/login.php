@@ -3,8 +3,7 @@
 use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 
-$this->title = 'Авторизация';
-$this->params['active_page'][] = 'login';
+$this->title = 'Система дистанционного обучения';
 
 ?>
 

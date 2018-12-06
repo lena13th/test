@@ -128,7 +128,6 @@ $this->title = 'Проверка знаний';
                                 <div class="input-field col s12 m11">
                                     <select about="<?= $i ?>" task="<?= $task->id ?>">
                                         <option value="" disabled selected>Выберите ответ</option>
-                                        <!--                                            TODO вразброс -->
                                         <?php
                                         $answer_new = $answers[$key];
                                         $count_answers = count($answers[$key]);

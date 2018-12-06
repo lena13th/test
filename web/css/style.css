@@ -144,12 +144,16 @@ display: inline-block;
     margin-top: 1rem;
     margin-bottom: 0rem;
 }
+.card .card-image.lk_image{
+    background: url("../img/account_1.jpg");
+    /*height: 66%;*/
+}
 .card .card-image img.account_img{
-    width: 40%;
+    width: 35%;
     margin: 0 auto;
-    top:25px;
-    margin-bottom: 20px;
-    opacity: 0.25;
+    /*top:25px;*/
+    /*margin-bottom: 20px;*/
+    opacity: 0;
 }
 .card.lk{
     top:20px;
@@ -175,4 +179,12 @@ display: inline-block;
 }
 .info_user span{
     color: #999;
+}
+.card .card-content p.login {
+    margin-bottom: 10px;
+}
+.info_user .login span{
+    color: #555;
+    font-size: 24px;
+    font-weight: 600;
 }
