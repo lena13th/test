@@ -21,7 +21,8 @@ class LoginForm extends Model
     public function rules()
     {
         return [
-            [['login'], 'integer'],
+//            [['login'], 'integer'],
+            [['login'], 'string'],
 //            [['login', 'type'], 'integer'],
             [['login', 'password'], 'required'],
 //            [['f_name', 'l_name', 'm_name', 'password'], 'required'],

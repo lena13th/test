@@ -43,16 +43,29 @@ class TestingController extends Controller
         $resources = $case->resources;
         $grf= Skills::findOne($grf);
 
+        $session = Yii::$app->session;
+        // открываем сессию
+        $session->open();
+        $cc = 'cases'.$id.'.';
+        $session[$cc.'kol_task'] = count($tasks);
+
+
+
         return $this->render('tasks', compact('tasks', 'case', 'grf', 'resources','letters','answers'));
     }
     public function actionCheck()
     {
+
+        $session = Yii::$app->session;
+
+
         $data = Yii::$app->request->post('data');
         $data = json_decode($data, true);
 
+
         if ($data["type"] == 1){
             $answer = Answers::findOne($data["answer"]);
-            return $answer->correct;
+            $ret = $answer->correct;
 
         } elseif ($data["type"] == 2){
             $correct_answers = Answers::find()
@@ -71,8 +84,8 @@ class TestingController extends Controller
                 }
             }
             if (empty($answer) && empty($correct_answers_copy)) {
-                return '1';
-            } else {return '0';}
+                $ret = 1;
+            } else {$ret= 0;}
 
         } elseif ($data["type"] == 3){
             $all_answers = Answers::find()
@@ -87,7 +100,7 @@ class TestingController extends Controller
                     $right_decision = 0;
                 }
             }
-            return $right_decision;
+            $ret= $right_decision;
 
         } elseif ($data["type"] == 4){
             $all_answers = Answers::find()
@@ -105,9 +118,35 @@ class TestingController extends Controller
                     $right_decision = 0;
                 }
             }
-            return $right_decision;
+            $ret= $right_decision;
         }
 
+
+        $cc = $data["cc"];
+
+        if (!isset($session[$cc.'sum'])) {$session[$cc.'sum'] = 0;}
+        if (!isset($session[$cc.'kol'])) {$session[$cc.'kol'] = 0;}
+
+        $session[$cc.'sum'] = (+$session[$cc.'sum']) +(+$ret);
+        $session[$cc.'kol'] = $session[$cc.'kol']+1;
+
+
+        if ((int) $session[$cc.'kol_task']==(int) $session[$cc.'kol']){
+            // закрываем сессию
+            unset($session[$cc.'tabs']);
+            unset($session[$cc.'sum']);
+            unset($session[$cc.'kol']);
+
+            $session->close();
+            // уничтожаем сессию и все связанные с ней данные.
+            $session->destroy();
+        } else {
+            $task_next = $data["task"] + 1;
+            $session[$cc.'tabs'] = 'test' . $task_next;
+        }
+
+
+        return $ret;
         return $this->render('tasks', compact('result'));
     }
 

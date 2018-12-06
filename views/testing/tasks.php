@@ -6,6 +6,8 @@ use yii\helpers\Url;
 $this->params['active_page'][] = 'testing';
 $this->title = 'Проверка знаний';
 
+$session = Yii::$app->session;
+
 ?>
 
 
@@ -16,11 +18,20 @@ $this->title = 'Проверка знаний';
            data-position="bottom" data-tooltip="<?=$grf->name?>"><?=mb_strimwidth ($grf->name,0, 30, '...')?></a>
         <a class="breadcrumb grey-text text-lighten-1"><?=$case->name?></a>
     </div>
+<?php
+$cc = 'cases'.$case->id.'.';
 
+?>
     <div
             class='hidden'
             caseid='<?= $case->id ?>'
             grfid='<?= $grf->id ?>'
+            tab_1="<?='test' . $tasks[0]->id?>"
+            tabs='<?=$session[$cc.'tabs'] ?>'
+            sum='<?=$session[$cc.'sum'] ?>'
+            kol='<?=$session[$cc.'kol'] ?>'
+            kol_task='<?=$session[$cc.'kol_task'] ?>'
+            cc='<?=$cc ?>'
     ></div>
 
     <div class="card box-shadow-none case">
@@ -217,18 +228,37 @@ $this->title = 'Проверка знаний';
 
 <?php
 $js = <<<JS
-var sum =0, kol=0;
+
+var tabs = document.getElementsByClassName('tabs')[0];
+var instance = M.Tabs.getInstance(tabs);
+var first_tabs = document.getElementsByClassName('hidden')[0].getAttribute('tabs');
+var tab_1 = document.getElementsByClassName('hidden')[0].getAttribute('tab_1');
+if (first_tabs===''){first_tabs = tab_1}
+
+if (first_tabs!=tab_1){
+    document.getElementsByClassName(tab_1)[0].classList.add('disabled');
+    document.getElementsByClassName(first_tabs)[0].classList.remove('disabled');
+    instance.select(first_tabs);
+}
+
+var sum = document.getElementsByClassName('hidden')[0].getAttribute('sum');
+if (sum===''){sum = 0}
+var kol = document.getElementsByClassName('hidden')[0].getAttribute('kol');
+if (kol===''){kol = 0}
+var cc = document.getElementsByClassName('hidden')[0].getAttribute('cc');
+
 
 $('.answerbutton').click(function(){
         this.classList.add('disabled');
         var nametest = this.getAttribute('about');
         var test = document.getElementById(nametest);
-        var tabs = document.getElementsByClassName('tabs')[0];
-        var instance = M.Tabs.getInstance(tabs);
+        // var tabs = document.getElementsByClassName('tabs')[0];
+        // var instance = M.Tabs.getInstance(tabs);
         var quest=['ов','','а','а','а','ов','ов','ов','ов','ов'];
 
-        var caseid = document.getElementsByClassName('hidden')[0].getAttribute('caseid');
-        var grfid = document.getElementsByClassName('hidden')[0].getAttribute('grfid');
+        var hidden = document.getElementsByClassName('hidden')[0];
+        var caseid = hidden.getAttribute('caseid');
+        var grfid = hidden.getAttribute('grfid');
         var type = test.getElementsByClassName('choice_answers')[0].getAttribute('typename');
         
        
@@ -236,6 +266,7 @@ $('.answerbutton').click(function(){
         data.type = type;
         data.caseid = caseid;
         data.grfid = grfid;
+        data.cc = cc;
         var full_selected=1;
         
         if (type == 1){
@@ -292,6 +323,7 @@ $('.answerbutton').click(function(){
              type: 'POST',
              data: {data:JSON.stringify(data)},
              success: function(res){
+                 
                      sum = (+sum) +(+res);
                      kol++;
                      
@@ -302,6 +334,8 @@ $('.answerbutton').click(function(){
                      if (new_nametest !== undefined){
                          new_nametest.classList.remove('disabled');
                          instance.select(nametest);
+
+                         
                      } else {
                          var test_result = document.getElementsByClassName('test_result')[0];
                          test_result.classList.remove('disabled');
