@@ -6,7 +6,7 @@ $this->title = 'Теория';
 ?>
 
 <div class="col s12 nav-wrapper valign-wrapper">
-    <a href="<?= Url::to(['/site/index'])?>" class="breadcrumb grey-text text-lighten-1">Главная</a>
+    <a href="<?= Url::to(['/site/login'])?>" class="breadcrumb grey-text text-lighten-1">Главная</a>
     <a class="breadcrumb grey-text text-lighten-1">Теория</a>
 </div>
 
@@ -34,6 +34,6 @@ $this->title = 'Теория';
     <?php endforeach;?>
 <?php else: ?>
     <span class="h2">Ничего не найдено</span>
-    <a class="btn  btn-primary" href="<?= Url::to(['/site/index']) ?>"><span>Вернуться на главную</span></a>
+    <a class="btn  btn-primary" href="<?= Url::to(['/site/login']) ?>"><span>Вернуться на главную</span></a>
 <?php endif; ?>
 

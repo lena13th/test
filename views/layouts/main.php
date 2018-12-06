@@ -30,7 +30,7 @@ AppAsset::register($this);
 
 <nav class="box-shadow-none">
     <div class="indigo darken-4 nav-wrapper">
-        <a href="<?= Url::to(['site/index'])?>" class="brand-logo small">Система дистанционного обучения</a>
+        <a href="<?= Url::to(['site/login'])?>" class="brand-logo small">Система дистанционного обучения</a>
         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
             <li
@@ -62,17 +62,17 @@ AppAsset::register($this);
             >
                 <a href="<?= Url::to(['testing/index'])?>">Проверка знаний</a>
             </li>
-            <li
-            <?php
-            if ($this->params['active_page'][0] == 'login') {
-                echo 'class="active"';
-            }
-            ?>
-            >
-                <a href="<?= Url::to(['site/login'])?>"><?php if (Yii::$app->user->isGuest) {echo 'Вход/регистрация';}
-                    else {echo 'Личный кабинет';}
-                    ?></a>
-            </li>
+<!--            <li-->
+<!--            --><?php
+//            if ($this->params['active_page'][0] == 'login') {
+//                echo 'class="active"';
+//            }
+//            ?>
+<!--            >-->
+<!--                <a href="--><?//= Url::to(['site/login'])?><!--">--><?php //if (Yii::$app->user->isGuest) {echo 'Вход/регистрация';}
+//                    else {echo 'Личный кабинет';}
+//                    ?><!--</a>-->
+<!--            </li>-->
         </ul>
     </div>
 </nav>

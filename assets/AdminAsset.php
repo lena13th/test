@@ -15,5 +15,7 @@ class AdminAsset extends AssetBundle
     ];
     public $depends = [
         'dmstr\web\AdminLteAsset',
+                'yii\bootstrap\BootstrapAsset',
+
     ];
 }

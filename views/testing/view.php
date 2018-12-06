@@ -6,7 +6,7 @@ $this->title = 'Проверка знаний';
 ?>
 
 <div class="col s12 nav-wrapper valign-wrapper breadcrumbs">
-    <a href="<?= Url::to(['/site/index'])?>" class="breadcrumb grey-text text-lighten-1">Главная</a>
+    <a href="<?= Url::to(['/site/login'])?>" class="breadcrumb grey-text text-lighten-1">Главная</a>
     <a href="<?= Url::to(['/testing/index'])?>" class="breadcrumb grey-text text-lighten-1">Проверка знаний</a>
     <a class="breadcrumb grey-text text-lighten-1 tooltipped" data-position="bottom" data-tooltip="<?=$parent_page->name?>"><?=mb_strimwidth ($parent_page->name,0, 30, '...')?></a>
 </div>
@@ -29,7 +29,7 @@ $this->title = 'Проверка знаний';
     </ul>
 <?php else: ?>
     <span class="h2">Ничего не найдено</span>
-    <a class="btn  btn-primary" href="<?= Url::to(['/site/index']) ?>"><span>Вернуться на главную</span></a>
+    <a class="btn  btn-primary" href="<?= Url::to(['/site/login']) ?>"><span>Вернуться на главную</span></a>
 <?php endif; ?>
 
 

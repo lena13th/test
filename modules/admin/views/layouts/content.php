@@ -21,7 +21,7 @@ use app\components\CompanyWidget;
 </div>
 
 <footer class="main-footer">
-    <span><?= CompanyWidget::widget(['object'=>'name']);?>. &#160;<?= CompanyWidget::widget(['object'=>'desc']);?></span>
+<!--    <span>--><?//= CompanyWidget::widget(['object'=>'name']);?><!--. &#160;--><?//= CompanyWidget::widget(['object'=>'desc']);?><!--</span>-->
 </footer>
 
 <!-- Control Sidebar -->

@@ -9,7 +9,7 @@ use app\modules\admin\components\BirthdayWidget;
 
 <header class="main-header">
     <a href="<?= Url::to(Url::to(['/admin'])) ?>" class="logo">
-        <span class="logo-mini"><small>Кафе</small></span><span class="logo-lg"><?= Yii::$app->name?></span>
+        <span class="logo-mini"><small>СДО</small></span><span class="logo-lg">Система дистанционного обучения</span>
     </a>
     <nav class="navbar navbar-static-top" role="navigation">
 
@@ -102,45 +102,28 @@ use app\modules\admin\components\BirthdayWidget;
                     </ul>
                 </li> -->
                 <!-- Tasks: style can be found in dropdown.less -->
-                <?php if(BirthdayWidget::widget(['type'=>1])) { ?>
-                <li class="dropdown tasks-menu">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                        <i class="fa fa-birthday-cake"></i>
 
-                        <span class="label label-danger">
-                            <?= BirthdayWidget::widget(['type'=>1]); ?>
-                        </span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li class="header"><b>Ближайшие дни рождения!</b></li>
-                        <?= BirthdayWidget::widget(['type'=>2]); ?>
-                    </ul>
-                </li>
-
-                <?php } ?>
                 <!-- User Account: style can be found in dropdown.less -->
                 <?= Html::a('<span>Перейти на сайт <i class="fa fa-external-link"></i></span>', Yii::$app->homeUrl, ['class' => 'admhome', 'target'=> '_blank']) ?>
                 <li class="dropdown user user-menu pull-right">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 
-                        <?php $image = Yii::$app->user->identity["image"] ?>
-                        <?= Html::img('@web/img/admin/'.$image.'', ['alt' => $popular->name, 'class'=>'user-image']) ?>
+<!--                        --><?php //$image  ?>
+<!--                        --><?//= Html::img('@web/img/admin/'.$image.'', ['alt' => $popular->name, 'class'=>'user-image']) ?>
 
-                        <span class="hidden-xs"><?= Yii::$app->user->identity["username"] ?></span>
+                        <span class="hidden-xs"><?= Yii::$app->user->identity["login"] ?></span>
                     </a>
                     <ul class="dropdown-menu">
                         <!-- User image -->
                         <li class="user-header">
                         <?= Html::img('@web/img/admin/'.$image.'', ['alt' => $popular->name, 'class'=>'img-circle']) ?>
                             <p>
-                                <?= Yii::$app->user->identity["name"] ?><br>
+                                <?= Yii::$app->user->identity["login"] ?><br>
                             <small>
-                                <?= Yii::$app->user->identity["username"] ?><br>
-                                <?= Yii::$app->user->identity["age"] ?> лет<br>
-                                <?= Yii::$app->user->identity["phone"] ?><br>
-                                <?= Yii::$app->user->identity["adress"] ?><br>
-                                <?= Yii::$app->user->identity["description"] ?><br>
-                                <?= Yii::$app->user->identity["role"] ?>
+                                <?= Yii::$app->user->identity["f_name"] ?><br>
+                                <?= Yii::$app->user->identity["l_name"] ?><br>
+                                <?= Yii::$app->user->identity["f_name"] ?><br>
+                                <?= Yii::$app->user->identity["type"] ?><br>
                             </small>
                             </p>
                         </li>

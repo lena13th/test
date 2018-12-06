@@ -60,9 +60,9 @@ footer{
     border-top: 2px solid #1a237e;
     font-size: 14px;
 }
-nav .nav-wrapper ul li:last-child a{
-    border-left: 2px solid #4695d0;
-}
+/*nav .nav-wrapper ul li:last-child a{*/
+    /*border-left: 2px solid #4695d0;*/
+/*}*/
 .footer-copyright {
     border-top: 1px solid rgba(0, 0, 0, .1);
 }
@@ -74,7 +74,8 @@ nav .nav-wrapper ul li:last-child a{
     font-size: 16px;
 }
 .card .card-title{
-    font-size: 18px;
+    font-size: 16px;
+
 }
 .collection a{
     color: #555;
@@ -142,4 +143,36 @@ display: inline-block;
 .login .input-field {
     margin-top: 1rem;
     margin-bottom: 0rem;
+}
+.card .card-image img.account_img{
+    width: 40%;
+    margin: 0 auto;
+    top:25px;
+    margin-bottom: 20px;
+    opacity: 0.25;
+}
+.card.lk{
+    top:20px;
+    font-size: 16px;
+}
+.info_user{
+    font-size: 16px;
+}
+.lk .row{
+    margin-bottom: 0;
+}
+.lk .collection .collection-item{
+    padding: 15px 30px;
+}
+.lk .collection a.collection-item{
+    color: #555555;
+}
+.lk .collection a.collection-item:hover {
+    background-color:#e8eaf6  ;
+}
+.a_admin{
+    margin-top: 30px;
+}
+.info_user span{
+    color: #999;
 }

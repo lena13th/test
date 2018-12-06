@@ -1,18 +1,16 @@
 <?php
 use yii\helpers\Html;
+use yii\helpers\Url;
 
+if (Yii::$app->user->identity["type"] == 1){
+    Yii::$app->response->redirect(Url::to('site/index'));
+}
 
 if (Yii::$app->controller->action->id === 'login') {
 
 } else {
 
-    if (class_exists('backend\assets\AppAsset')) {
-        backend\assets\AppAsset::register($this);
-    } else {
-        app\assets\AppAsset::register($this);
-    }
     dmstr\web\AdminLteAsset::register($this);
-    app\assets\AdminAsset::register($this);
     app\assets\AdminAsset::register($this);
 
 

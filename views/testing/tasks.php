@@ -10,7 +10,7 @@ $this->title = 'Проверка знаний';
 
 
     <div class="col s12 nav-wrapper valign-wrapper">
-        <a href="<?= Url::to(['/site/index'])?>" class="breadcrumb grey-text text-lighten-1">Главная</a>
+        <a href="<?= Url::to(['/site/login'])?>" class="breadcrumb grey-text text-lighten-1">Главная</a>
         <a href="<?= Url::to(['/testing/index'])?>" class="breadcrumb grey-text text-lighten-1">Проверка знаний</a>
         <a href="<?= Url::to(['/testing/view', 'id'=>$grf->id])?>" class="breadcrumb grey-text text-lighten-1 tooltipped"
            data-position="bottom" data-tooltip="<?=$grf->name?>"><?=mb_strimwidth ($grf->name,0, 30, '...')?></a>
@@ -69,7 +69,7 @@ $this->title = 'Проверка знаний';
     </div>
 <?php else: ?>
     <span class="h2">Ничего не найдено</span>
-    <a class="btn  btn-primary" href="<?= Url::to(['/site/index']) ?>"><span>Вернуться на главную</span></a>
+    <a class="btn  btn-primary" href="<?= Url::to(['/site/login']) ?>"><span>Вернуться на главную</span></a>
 <?php endif; ?>
 <?php if( !empty($tasks) ): ?>
     <div class="card-content grey lighten-4">
