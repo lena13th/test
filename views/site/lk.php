@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 
-$this->title = 'Система дистанционного обучения';
+$this->title = 'Электронная образовательная среда';
 
 if (Yii::$app->user->isGuest) {
     return Yii::$app->response->redirect(['site/login']);
@@ -32,13 +32,13 @@ if (Yii::$app->user->isGuest) {
                         <a class="lk_a collection-item" href="<?= Url::to(['site/result'])?>">Посмотреть результаты тестирования</a>
                     </ul>
 
-                    <?php if ($user->type ==2) { ?>
-
-                    <ul class="collection a_admin">
-                        <a class="lk_a collection-item" href="<?= Url::to(['/admin'])?>">Перейти к административную панель</a>
-                    </ul>
-
-                    <?php } ?>
+<!--                    --><?php //if ($user->type ==2) { ?>
+<!---->
+<!--                    <ul class="collection a_admin">-->
+<!--                        <a class="lk_a collection-item" href="--><?//= Url::to(['/admin'])?><!--">Перейти к административную панель</a>-->
+<!--                    </ul>-->
+<!---->
+<!--                    --><?php //} ?>
                 </div>
             </div>
             <div class="col s12 m6">

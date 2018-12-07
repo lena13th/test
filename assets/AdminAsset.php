@@ -11,6 +11,7 @@ class AdminAsset extends AssetBundle
     ];
     public $css = [
         'datatables/dataTables.bootstrap.css',
+
         // more plugin CSS here
     ];
     public $depends = [

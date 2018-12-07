@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 
-$this->title = 'Система дистанционного обучения';
+$this->title = 'Результаты тестирования';
 
 if (Yii::$app->user->isGuest) {
     return Yii::$app->response->redirect(['site/login']);

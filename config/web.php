@@ -68,6 +68,7 @@ $config = [
             'rules' => [
                 '/' => 'site/login',
                 '/index' => 'site/login',
+                '/admin' => 'site/login',
                 'signup'=>'site/signup',
                 'result'=>'site/result',
                 'login' => 'site/login',

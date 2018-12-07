@@ -4,7 +4,7 @@ use yii\bootstrap\ActiveForm;
 use yii\helpers\Html;
 use yii\helpers\Url;
 
-$this->title = 'Система дистанционного обучения';
+$this->title = 'Электронная образовательная среда';
 
 ?>
 

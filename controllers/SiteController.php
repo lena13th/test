@@ -17,6 +17,17 @@ class SiteController extends Controller
      *
      * @return string
      */
+
+    public function actions()
+    {
+        return [
+            'error' => [
+                'class' => 'yii\web\ErrorAction',
+            ],
+        ];
+    }
+
+
     public function actionIndex()
     {
         return Yii::$app->response->redirect(['site/login']);

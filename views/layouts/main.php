@@ -30,7 +30,7 @@ AppAsset::register($this);
 
 <nav class="box-shadow-none">
     <div class="indigo darken-4 nav-wrapper">
-        <a href="<?= Url::to(['site/login'])?>" class="brand-logo small">Система дистанционного обучения</a>
+        <a href="<?= Url::to(['site/login'])?>" class="brand-logo small">Электронная образовательная среда</a>
         <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
             <li

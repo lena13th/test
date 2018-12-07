@@ -214,3 +214,7 @@ display: inline-block;
 .href_lk{
     margin-top: 30px;
 }
+.img_account_admin{
+    width: 50px;
+    opacity: 0.1;
+}

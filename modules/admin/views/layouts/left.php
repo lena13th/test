@@ -37,7 +37,7 @@ use yii\helpers\html;
                 'items' => [
                     ['label' => 'Панель управления', 'options' => ['class' => 'header']],
                     // ['label' => 'Заказы', 'icon' => 'book', 'url' => ['order/index'],],
-                    ['label' => 'Кафе "Экспресс"', 'icon' => 'gear', 'url' => ['company/index', 'id'=>1],],
+//                    ['label' => 'Кафе "Экспресс"', 'icon' => 'gear', 'url' => ['company/index', 'id'=>1],],
 //                    [
 //                        'label' => '<span>Заказы</span><span class="pull-right-container"><small class="label pull-right bg-red">' . OrderCountWidget::widget() . '</small></span>',
 //                        'icon' => 'book',
@@ -45,14 +45,12 @@ use yii\helpers\html;
 //                        'encode' => false,
 //                    ],
 //                    [
-//                        'label' => 'Банкетные блюда',
+//                        'label' => 'Умения',
 //                        'icon' => 'cutlery',
 //                        'url' => '#',
 //                        'items' => [
-//                        ['label' => 'Список блюд', 'icon' => 'list-ul', 'url' => ['product/index'],],
-//                        ['label' => 'Создать блюдо', 'icon' => 'plus', 'url' => ['product/create'],],
-//                        ['label' => 'Список категорий', 'icon' => 'list', 'url' => ['category/index'],],
-//                        ['label' => 'Создать категорию', 'icon' => 'plus', 'url' => ['category/create'],],
+//                            ['label' => 'Добавить умение', 'icon' => 'plus', 'url' => ['product/create'],],
+//                            ['label' => 'Список умений', 'icon' => 'list-ul', 'url' => ['product/index'],],
 //                        ],
 //                    ],
 //                    [
