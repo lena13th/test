@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 
-$this->title = 'Результаты тестирования';
+$this->title = 'Результаты';
 
 if (Yii::$app->user->isGuest) {
     return Yii::$app->response->redirect(['site/login']);
@@ -23,7 +23,7 @@ if (Yii::$app->user->isGuest) {
             <div class="col s12">
                 <div class="">
                     <div class="center-align result_text">
-                        <p>Результаты тестирования</p>
+                        <p>Результаты</p>
                     </div>
 
                     <table class="centered white">

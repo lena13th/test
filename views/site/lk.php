@@ -29,7 +29,7 @@ if (Yii::$app->user->isGuest) {
                     </ul>
 
                     <ul class="collection a_admin">
-                        <a class="lk_a collection-item" href="<?= Url::to(['site/result'])?>">Посмотреть результаты тестирования</a>
+                        <a class="lk_a collection-item" href="<?= Url::to(['site/result'])?>">Посмотреть результаты</a>
                     </ul>
 
 <!--                    --><?php //if ($user->type ==2) { ?>
