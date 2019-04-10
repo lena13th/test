@@ -1,0 +1,72 @@
+.content-header .breadcrumb {
+    left: 10px;
+    padding-bottom: 20px;
+}
+.admin_answers{
+    font-size: 14px;
+}
+.correct_answer{
+    /*color: #01871e;*/
+    color: #029922;
+    /*font-weight:bold*/
+}
+.wrong_answer{
+    /*color: #de0b1d;*/
+    color: #d6202f;
+    /*font-weight:bold*/
+
+}
+.summary{
+    font-size: 12px;
+    /*font-weight: normal;*/
+    /*float: right;*/
+}
+
+/* add sorting icons to gridview sort links */
+a.asc:after, a.desc:after {
+    position: relative;
+    top: 1px;
+    /*display: inline-block;*/
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    padding-left: 5px;
+}
+
+a.asc:after {
+    content: /*"\e113"*/ "\e155";
+}
+
+a.desc:after {
+    content: /*"\e114"*/ "\e156";
+}
+
+.p_head {
+    font-size: 18px;
+    margin-top: 40px;
+    font-weight: bold;
+}
+.p_head_1 {
+    font-size: 16px;
+    margin-top: 20px;
+    /*font-weight: bold;*/
+}
+.field_check_1{
+    width: 70%;
+    display: inline-block;
+}
+.field_check_2{
+    width: 25%;
+    display: inline-block;
+    margin-left: 40px;
+}
+.field_check_3{
+    width: 15%;
+    display: inline-block;
+    margin-right: 40px;
+}
+
+#main-sidebar.active {
+    padding-left: 150px;
+}

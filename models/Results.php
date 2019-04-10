@@ -47,10 +47,10 @@ class Results extends \yii\db\ActiveRecord
     {
         return [
             'id' => 'ID',
-            'userid' => 'Userid',
-            'caseid' => 'Caseid',
-            'mark' => 'Mark',
-            's_time' => 'S Time',
+            'userid' => 'Студент',
+            'caseid' => 'Кейс',
+            'mark' => 'Оценка, %',
+            's_time' => 'Время прохождения',
             'f_time' => 'F Time',
         ];
     }

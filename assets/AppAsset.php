@@ -25,6 +25,7 @@ class AppAsset extends AssetBundle
     ];
     public $js = [
         'js/init.js',
+        'js/timer.js',
         'js/materialize.js',
     ];
     public $depends = [

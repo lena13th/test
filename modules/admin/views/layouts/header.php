@@ -9,11 +9,11 @@ use app\modules\admin\components\BirthdayWidget;
 
 <header class="main-header">
     <a href="<?= Url::to(Url::to(['/admin'])) ?>" class="logo">
-        <span class="logo-mini"><small>СДО</small></span><span class="logo-lg">СДО</span>
+        <span class="logo-mini"><small>Админ. панель</small></span><span class="logo-lg">Админ. панель</span>
     </a>
     <nav class="navbar navbar-static-top" role="navigation">
 
-<!--        <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">-->
+<!--        <a href="#" id="menu-toggle" class="sidebar-toggle" data-toggle="sidebar" role="button">-->
 <!--            <span class="sr-only">Toggle navigation</span>-->
 <!--        </a>-->
 
@@ -37,7 +37,7 @@ use app\modules\admin\components\BirthdayWidget;
                                                             <small>
                                 Фамилия: <?= Yii::$app->user->identity["f_name"] ?><br>
                                 Имя: <?= Yii::$app->user->identity["l_name"] ?><br>
-                                Отчество: <?= Yii::$app->user->identity["f_name"] ?><br>
+                                Отчество: <?= Yii::$app->user->identity["m_name"] ?><br>
                                                             </small>
                             </p>
                         </li>

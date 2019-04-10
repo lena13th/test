@@ -2,7 +2,7 @@
 use yii\helpers\html;
 
 ?>
-<aside class="main-sidebar">
+<aside class="main-sidebar" id="main-sidebar">
 
     <section class="sidebar">
 
@@ -36,7 +36,10 @@ use yii\helpers\html;
                 'options' => ['class' => 'sidebar-menu'],
                 'items' => [
                     ['label' => 'Панель управления', 'options' => ['class' => 'header']],
-                    // ['label' => 'Заказы', 'icon' => 'book', 'url' => ['order/index'],],
+                     ['label' => 'Умения', 'icon' => 'book', 'url' => ['skills/index'],],
+                     ['label' => 'Кейсы', 'icon' => 'book', 'url' => ['cases/index'],],
+                     ['label' => 'Студенты', 'icon' => 'book', 'url' => ['students/index'],],
+                     ['label' => 'Результаты', 'icon' => 'book', 'url' => ['results/index'],],
 //                    ['label' => 'Кафе "Экспресс"', 'icon' => 'gear', 'url' => ['company/index', 'id'=>1],],
 //                    [
 //                        'label' => '<span>Заказы</span><span class="pull-right-container"><small class="label pull-right bg-red">' . OrderCountWidget::widget() . '</small></span>',

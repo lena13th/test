@@ -12,6 +12,7 @@ if (Yii::$app->controller->action->id === 'login') {
 
     dmstr\web\AdminLteAsset::register($this);
     app\assets\AdminAsset::register($this);
+    app\assets\AdminAsset_1::register($this);
 
 
     $directoryAsset = Yii::$app->assetManager->getPublishedUrl('@vendor/almasaeed2010/adminlte/dist');

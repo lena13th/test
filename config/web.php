@@ -7,6 +7,7 @@ $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'language' => 'ru-RU',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
@@ -27,7 +28,32 @@ $config = [
                 ],
             ],
         ],
-    ],
+        'gridview' => [
+            'class' => '\kartik\grid\Module',
+        ],
+
+//        'datecontrol' =>  [
+//            'class' => 'kartik\datecontrol\Module',
+//
+//            // format settings for displaying each date attribute
+//            'displaySettings' => [
+//                'date' => 'd-m-Y',
+//                'time' => 'H:i:s A',
+//                'datetime' => 'd-m-Y H:i:s A',
+//            ],
+//
+//            // format settings for saving each date attribute
+//            'saveSettings' => [
+//                'date' => 'Y-m-d',
+//                'time' => 'H:i:s',
+//                'datetime' => 'Y-m-d H:i:s',
+//            ],
+//
+//            // automatically use kartik\widgets for each of the above formats
+//            'autoWidget' => false,
+//
+//        ],
+        ],
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
@@ -68,7 +94,7 @@ $config = [
             'rules' => [
                 '/' => 'site/login',
                 '/index' => 'site/login',
-                '/admin' => 'site/login',
+//                '/admin' => 'site/login',
                 'signup'=>'site/signup',
                 'result'=>'site/result',
                 'login' => 'site/login',
@@ -84,8 +110,7 @@ $config = [
 
             ],
         ],
-
-    ],
+   ],
     'params' => $params,
 ];
 
@@ -109,7 +134,8 @@ if (YII_ENV_DEV) {
                 'templates' => [
                     'adminlte' => '@vendor/dmstr/yii2-adminlte-asset/gii/templates/crud/simple',
                 ]
-            ]
+            ],
+            'kartikgii-crud' => ['class' => 'warrence\kartikgii\crud\Generator'],
         ],
     ];
 }

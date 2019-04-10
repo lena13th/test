@@ -25,6 +25,28 @@ $session = Yii::$app->session;
 $cc = 'cases'.$case->id.'.';
 
 ?>
+
+    <!--        таймер -->
+    <ul class="countdown">
+<!--        <li> <span class="days">00</span>-->
+<!--            <p class="days_ref">days</p>-->
+<!--        </li>-->
+<!--        <li class="seperator">.</li>-->
+        <li> <span class="hours">00</span>
+            <p class="hours_ref">часов</p>
+        </li>
+        <li class="seperator">:</li>
+        <li> <span class="minutes">00</span>
+            <p class="minutes_ref">минут</p>
+        </li>
+        <li class="seperator">:</li>
+        <li> <span class="seconds">00</span>
+            <p class="seconds_ref">секунд</p>
+        </li>
+    </ul>
+    <!--end таймер-->
+
+
     <div
             class='hidden'
             caseid='<?= $case->id ?>'
@@ -362,6 +384,14 @@ $('.answerbutton').click(function(){
         return sum;
         // return false;
     });
+
+        $('.countdown').downCount({
+            date: '04/10/2019 16:30:00',
+            offset: +5
+        }, function () {
+            alert('WOOT WOOT, done!');
+        });
+
 JS;
 
 
