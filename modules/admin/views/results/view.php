@@ -26,7 +26,10 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
     </p>
 
-    <?= DetailView::widget([
+    <?php
+    date_default_timezone_set('Etc/GMT-5');
+
+    echo DetailView::widget([
         'model' => $model,
         'attributes' => [
             [
@@ -43,8 +46,8 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'label' => 'Начало тестирования',
                 'value' => function($data){
-                    if ($data->f_time!=0){
-                        $ret=gmdate("d.m.Y H:i:s", $data->f_time);
+                    if ($data->s_time!=0){
+                        $ret=date("d.m.Y H:i:s", $data->s_time);
                     } else {
                         $ret='';
                     }

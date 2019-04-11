@@ -10,7 +10,7 @@ use app\models\User;
 use Yii;
 use yii\web\Controller;
 
-class TestingController extends Controller
+class TestingController11 extends Controller
 {
 
     public function actionIndex()
@@ -51,7 +51,14 @@ class TestingController extends Controller
         $cc = 'cases'.$id.'.';
         $session[$cc.'kol_task'] = count($tasks);
 
+        unset($session[$cc.'tabs']);
+        unset($session[$cc.'sum']);
+        unset($session[$cc.'kol']);
+        unset($session[$cc.'date_start_test']);
 
+        $session->close();
+        // уничтожаем сессию и все связанные с ней данные.
+        $session->destroy();
 
         return $this->render('tasks', compact('tasks', 'case', 'grf', 'resources','letters','answers'));
     }
@@ -97,8 +104,9 @@ class TestingController extends Controller
                 $correct_answer[$answer->id] = $answer->correct;
             }
             $right_decision = 1;
-            foreach ($data["answer"] as $answer) {
+            foreach ($data["answer"] as $key => $answer) {
                 if (!($correct_answer[$answer["id_modif_answer_3"]] == $answer["id_modif_answer"])){
+//                if (!($correct_answer[$answer[$key]] == $answer[$key])){
                     $right_decision = 0;
                 }
             }
@@ -128,10 +136,11 @@ class TestingController extends Controller
 
         if (!isset($session[$cc.'sum'])) {$session[$cc.'sum'] = 0;}
         if (!isset($session[$cc.'kol'])) {$session[$cc.'kol'] = 0;}
+        if (!isset($session[$cc.'date_start_test'])) {$session[$cc.'date_start_test'] = 0;}
 
         $session[$cc.'sum'] = (+$session[$cc.'sum']) +(+$ret);
         $session[$cc.'kol'] = $session[$cc.'kol']+1;
-
+        $session[$cc.'date_start_test'] = (int)$data["date_start_test"];
 
         if ((int) $session[$cc.'kol_task']==(int) $session[$cc.'kol']){
             // закрываем сессию
@@ -143,11 +152,12 @@ class TestingController extends Controller
             $result->s_time = 0;
             $result->f_time = 0;
 
-            $result->save();
+            $result->save(false);
 
             unset($session[$cc.'tabs']);
             unset($session[$cc.'sum']);
             unset($session[$cc.'kol']);
+            unset($session[$cc.'date_start_test']);
 
             $session->close();
             // уничтожаем сессию и все связанные с ней данные.

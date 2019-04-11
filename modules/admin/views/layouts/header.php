@@ -21,7 +21,7 @@ use app\modules\admin\components\BirthdayWidget;
 
             <ul class="nav navbar-nav">
 
-                <?= Html::a('<span>Перейти на сайт <i class="fa fa-external-link"></i></span>', Yii::$app->homeUrl, ['class' => 'admhome', 'target'=> '_blank']) ?>
+<!--                --><?//= Html::a('<span>Перейти на сайт <i class="fa fa-external-link"></i></span>', Yii::$app->homeUrl, ['class' => 'admhome', 'target'=> '_blank']) ?>
                 <li class="dropdown user user-menu pull-right">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
 

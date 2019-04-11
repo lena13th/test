@@ -228,6 +228,11 @@ ul.countdown {
     display: block;
     text-align: center;
 }
+ul.countdown.hidden_elem {
+    display: none;
+
+}
+
 ul.countdown li {
     display: inline-block;
 }
@@ -246,5 +251,8 @@ ul.countdown li p {
     font-size: 12px;
 }
 
-
 /******** end таймер **************/
+
+.hidden_elem{
+    display: none;
+}

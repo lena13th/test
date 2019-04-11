@@ -81,9 +81,10 @@
 
             // based on the date change the refrence wording
             var ref_days = (days === 1) ? 'day' : 'days',
-                ref_hours = (hours === 1) ? 'hour' : 'hours',
-                ref_minutes = (minutes === 1) ? 'minute' : 'minutes',
-                ref_seconds = (seconds === 1) ? 'second' : 'seconds';
+                ref_hours = (hours === 1) ? 'час' : 'часов',
+                ref_minutes = (minutes === 1) ? 'минута' : 'минут',
+                ref_seconds = (seconds === 1) ? 'секунда' : 'секунд';
+
 
             // set to DOM
             container.find('.days').text(days);

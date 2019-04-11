@@ -31,7 +31,6 @@ if (Yii::$app->user->isGuest) {
                         <tr>
                             <th>Наименование кейса</th>
                             <th>Оценка (%)</th>
-                            <th>Время выполнения</th>
                             <th>Количество попыток</th>
                         </tr>
                         </thead>
@@ -41,7 +40,6 @@ if (Yii::$app->user->isGuest) {
                             <tr>
                                 <td><?= $result['case'] ?></td>
                                 <td><?= $result['mark'] ?></td>
-                                <td><?= $result['time'] ?></td>
                                 <td><?= $result['kol'] ?></td>
                             </tr>
                         <?php } ?>

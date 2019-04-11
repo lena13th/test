@@ -32,13 +32,13 @@ if (Yii::$app->user->isGuest) {
                         <a class="lk_a collection-item" href="<?= Url::to(['site/result'])?>">Посмотреть результаты</a>
                     </ul>
 
-<!--                    --><?php //if ($user->type ==2) { ?>
-<!---->
-<!--                    <ul class="collection a_admin">-->
-<!--                        <a class="lk_a collection-item" href="--><?//= Url::to(['/admin'])?><!--">Перейти к административную панель</a>-->
-<!--                    </ul>-->
-<!---->
-<!--                    --><?php //} ?>
+                    <?php if ($user->type ==2) { ?>
+
+                    <ul class="collection a_admin">
+                        <a class="lk_a collection-item" href="<?= Url::to(['/admin'])?>">Перейти к административную панель</a>
+                    </ul>
+
+                    <?php } ?>
                 </div>
             </div>
             <div class="col s12 m6">

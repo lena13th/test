@@ -23,9 +23,10 @@ $this->params['breadcrumbs'][] = $this->title;
 <!--        --><?//= Html::a('Create Results', ['create'], ['class' => 'btn btn-success']) ?>
 <!--    </p>-->
 
-    <?=
+    <?php
+    date_default_timezone_set('Etc/GMT-5');
 
-    GridView::widget([
+    echo GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'rowOptions'   => function ($model, $key, $index, $grid) {
@@ -58,8 +59,8 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute'=>'s_time',
                 'content'=>function($data){
-                    if ($data->f_time!=0){
-                        $ret=gmdate("d.m.Y H:i:s", $data->f_time);
+                    if ($data->s_time!=0){
+                        $ret=date("d.m.Y H:i:s", $data->s_time);
                     } else {
                         $ret='';
                     }

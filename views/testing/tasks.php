@@ -11,6 +11,7 @@ $this->title = 'Проверка знаний';
 
 $session = Yii::$app->session;
 
+
 ?>
 
 
@@ -25,9 +26,37 @@ $session = Yii::$app->session;
 $cc = 'cases'.$case->id.'.';
 
 ?>
+    <!-- Modal Trigger -->
+    <a class="waves-effect waves-light btn modal-trigger hidden_elem" href="#modal1">Modal</a>
+
+    <!-- Modal Structure -->
+    <div id="modal1" class="modal">
+        <div class="modal-content ">
+            <h4 class="center-align">Тест с ограничением по времени</h4>
+            <p>Время на тест ограничено и равно <?= $case->time ?> минут. Будет идти обратный отсчет времени с момента начала вашей попытки, и вы должны
+                завершить тест до окончания времени. Вы уверены, что хотите начать прямо сейчас?</p>
+        </div>
+        <div class="modal-footer">
+            <a href="<?= Url::to(['/testing/view', 'id'=>$grf->id])?>" class="modal-close waves-effect waves-red btn-flat">Отмена</a>
+            <a href="#!" id="start_try" class="modal-close waves-effect waves-light btn">Начать попытку</a>
+        </div>
+    </div>
+
+    <a class="waves-effect waves-light btn modal-trigger hidden_elem" href="#modal2">Modal</a>
+
+    <div id="modal2" class="modal">
+        <div class="modal-content">
+            <h4 class="center-align">Время вышло</h4>
+            <p class="test_result_p"></p>
+            <p class="test_result_p1"></p>
+        </div>
+        <div class="modal-footer">
+            <a href="<?= Url::to(['/testing/view', 'id'=>$grf->id])?>" class="modal-close waves-effect waves-red btn-flat">Закрыть</a>
+        </div>
+    </div>
 
     <!--        таймер -->
-    <ul class="countdown">
+    <ul class="countdown <?php if ($case->time==0){echo 'hidden_elem';} ?>">
 <!--        <li> <span class="days">00</span>-->
 <!--            <p class="days_ref">days</p>-->
 <!--        </li>-->
@@ -46,17 +75,20 @@ $cc = 'cases'.$case->id.'.';
     </ul>
     <!--end таймер-->
 
-
     <div
             class='hidden'
             caseid='<?= $case->id ?>'
+            casetime='<?= $case->time ?>'
             grfid='<?= $grf->id ?>'
             tab_1="<?='test' . $tasks[0]->id?>"
             tabs='<?=$session[$cc.'tabs'] ?>'
             sum='<?=$session[$cc.'sum'] ?>'
             kol='<?=$session[$cc.'kol'] ?>'
             kol_task='<?=$session[$cc.'kol_task'] ?>'
+            date_start_test='<?=$session[$cc.'date_start_test'] ?>'
+            date_start_test_text=''
             cc='<?=$cc ?>'
+            close_test=''
     ></div>
 
     <div class="card box-shadow-none case">
@@ -241,6 +273,7 @@ $cc = 'cases'.$case->id.'.';
             <div class="center-align">
                 <p class="test_result_h"></p><br>
                 <p class="test_result_p"></p><br>
+                <p class="time_result_p"></p><br>
                 <a class="waves-effect waves-light btn answerbutton teal darken-1"
                    href="<?= Url::to(['/testing/view', 'id'=>$grf->id])?>"
                 >
@@ -255,7 +288,25 @@ $cc = 'cases'.$case->id.'.';
 
 <?php
 $js = <<<JS
+  $(document).ready(function(){
+      var casetime = document.getElementsByClassName('hidden')[0].getAttribute('casetime');
+        var date_start_test = document.getElementsByClassName('hidden')[0].getAttribute('date_start_test_text');
+        if (date_start_test===''){
+            date_start_test = document.getElementsByClassName('hidden')[0].getAttribute('date_start_test');
+        }
+        if ((casetime!=0)&&(date_start_test==='')){
+          
+          $('.modal').modal({dismissible:false});
+          document.getElementsByClassName('modal-trigger')[0].click();
 
+          // $('.modal-trigger').click();
+      }
+      if (date_start_test!==''){
+          $('#start_try').click();
+      }
+      
+  });
+      
 var tabs = document.getElementsByClassName('tabs')[0];
 var instance = M.Tabs.getInstance(tabs);
 var first_tabs = document.getElementsByClassName('hidden')[0].getAttribute('tabs');
@@ -272,6 +323,8 @@ var sum = document.getElementsByClassName('hidden')[0].getAttribute('sum');
 if (sum===''){sum = 0}
 var kol = document.getElementsByClassName('hidden')[0].getAttribute('kol');
 if (kol===''){kol = 0}
+var kol_task = document.getElementsByClassName('hidden')[0].getAttribute('kol_task');
+if (kol_task===''){kol_task = 0}
 var cc = document.getElementsByClassName('hidden')[0].getAttribute('cc');
 
 
@@ -287,13 +340,46 @@ $('.answerbutton').click(function(){
         var caseid = hidden.getAttribute('caseid');
         var grfid = hidden.getAttribute('grfid');
         var type = test.getElementsByClassName('choice_answers')[0].getAttribute('typename');
+        var casetime = document.getElementsByClassName('hidden')[0].getAttribute('casetime');
+        var date_start_test = document.getElementsByClassName('hidden')[0].getAttribute('date_start_test');
+        if (date_start_test===''){
+            date_start_test = document.getElementsByClassName('hidden')[0].getAttribute('date_start_test_text');
+        }
         
-       
         var data= {};
         data.type = type;
         data.caseid = caseid;
         data.grfid = grfid;
         data.cc = cc;
+        
+        var date_end_test = Math.round(new Date().getTime()/1000);
+        data.date_start_test = date_start_test;
+        data.date_end_test = date_end_test;
+        data.casetime = casetime;
+        
+    var close_test = document.getElementsByClassName('hidden')[0].getAttribute('close_test');
+    if (close_test==1){
+        $.ajax({
+             url: '/testing/closetest',
+             type: 'POST',
+             data: {data:JSON.stringify(data)},
+             success: function(res){
+                $('#modal2').modal({dismissible:false});
+                var modal_content_field = document.getElementsByClassName('modal-content')[1];
+                var test_result_p = modal_content_field.getElementsByClassName('test_result_p')[0];
+                var r = (sum*100)/kol_task;
+                test_result_p.innerHTML = 'Ваш результат '+r+'%.';
+                var test_result_p1 = modal_content_field.getElementsByClassName('test_result_p1')[0];
+                test_result_p1.innerHTML = 'Вы ответили верно на '+sum+' вопрос'+quest[sum]+' из '+kol_task+'.';
+                document.getElementsByClassName('modal-trigger')[1].click();
+
+             },
+             error: function(){
+             }
+        });
+
+    } else {
+
         var full_selected=1;
         
         if (type == 1){
@@ -344,13 +430,14 @@ $('.answerbutton').click(function(){
             M.toast({html: 'Необходимо выбрать хотя бы один вариант ответа'})
 
         } else {
+            
             self=this;
         $.ajax({
              url: '/testing/check',
              type: 'POST',
              data: {data:JSON.stringify(data)},
              success: function(res){
-                 
+                    console.log(res);
                      sum = (+sum) +(+res);
                      kol++;
                      
@@ -364,16 +451,29 @@ $('.answerbutton').click(function(){
 
                          
                      } else {
+                         document.getElementsByClassName('countdown')[0].classList.add('hidden_elem');
+
                          var test_result = document.getElementsByClassName('test_result')[0];
                          test_result.classList.remove('disabled');
                          var test_result_h = document.getElementsByClassName('test_result_h')[0];
-                         var r = (sum*100)/kol;
+                         var r = (sum*100)/kol_task;
                          test_result_h.innerHTML = 'Ваш результат '+r+'%.';
-                         var test_result_p = document.getElementsByClassName('test_result_p')[0];
-                         test_result_p.innerHTML = 'Вы ответили верно на '+sum+' вопрос'+quest[sum]+' из '+kol+'.';
+                         var test_result_p = document.getElementsByClassName('test_result_p')[1];
+                         test_result_p.innerHTML = 'Вы ответили верно на '+sum+' вопрос'+quest[sum]+' из '+kol_task+'.';
+                         if (casetime!=0){
+                             var time_result_p = document.getElementsByClassName('time_result_p')[0];
+                             var time_test=new Date((date_end_test-date_start_test)*1000);
+                             var time_test_h=time_test.getHours()-5;
+                             if (String(time_test_h).length==1){time_test_h='0'+time_test_h;}
+                             var time_test_min=time_test.getMinutes();
+                             if (String(time_test_min).length==1){time_test_min='0'+time_test_min;}
+                             var time_test_sec=time_test.getSeconds();
+                             if (String(time_test_sec).length==1){time_test_sec='0'+time_test_sec;}
+                            
+                             time_result_p.innerHTML = 'Время прохождения теста: '+time_test_h+':'+ time_test_min+':'+time_test_sec;
+                         }
                          instance.select('test_result');
                      }
-                     
                      
 
              },
@@ -383,14 +483,44 @@ $('.answerbutton').click(function(){
         }
         return sum;
         // return false;
+        }
     });
 
+    $('#start_try').click(function(){
+        var casetime = document.getElementsByClassName('hidden')[0].getAttribute('casetime');
+        var date_start_test = document.getElementsByClassName('hidden')[0].getAttribute('date_start_test_text');
+        if (date_start_test===''){
+            date_start_test = document.getElementsByClassName('hidden')[0].getAttribute('date_start_test');
+        }
+        if (date_start_test===''){
+            date_start_test= Math.round(new Date().getTime()/1000);
+            document.getElementsByClassName('hidden')[0].setAttribute('date_start_test_text', date_start_test);
+        }
+        
+        var date = new Date(date_start_test*1000);
+        var date_now= (date.getMonth()+1)+'/'+date.getDate()+'/'+date.getFullYear()+' '+date.getHours()+':'+date.getMinutes()+':'+date.getSeconds();
+        var minutt=date.getMinutes()+Number(casetime);
+        var timer_hours=(minutt - minutt % 60) / 60;
+        var timer_minutes=minutt % 60;
+        var date_timer=(date.getMonth()+1)+'/'+date.getDate()+'/'+date.getFullYear()+' '+(date.getHours()+timer_hours)+':'+timer_minutes+':'+(date.getSeconds()+1);
+        
+        
+        console.log(date_now);
+        console.log(date_timer);
+        
         $('.countdown').downCount({
-            date: '04/10/2019 16:30:00',
+            date: date_timer,
             offset: +5
         }, function () {
-            alert('WOOT WOOT, done!');
+            // alert('WOOT WOOT, done!');
+          // $('#modal2').modal({dismissible:false});
+          // document.getElementsByClassName('modal-trigger')[1].click();
+                      document.getElementsByClassName('hidden')[0].setAttribute('close_test', 1);
+
+          document.getElementsByClassName('answerbutton')[0].click();
+
         });
+    })
 
 JS;
 
