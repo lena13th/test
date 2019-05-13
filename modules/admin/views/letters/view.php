@@ -40,7 +40,7 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'order',
             'name:ntext',
-            'text:ntext',
+            'text:html',
         ],
     ]) ?>
 

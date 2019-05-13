@@ -162,7 +162,8 @@ class TestingController extends Controller
 
             $result->save();
 
-            unset($session[$cc . 'tabs']);
+//            unset($session[$cc . 'tabs']);
+            unset($session[$cc . 'active_task']);
             unset($session[$cc . 'sum']);
             unset($session[$cc . 'kol']);
             unset($session[$cc . 'date_start_test']);
@@ -171,8 +172,9 @@ class TestingController extends Controller
             // уничтожаем сессию и все связанные с ней данные.
             $session->destroy();
         } else {
-            $task_next = $data["task"] + 1;
-            $session[$cc . 'tabs'] = 'test' . $task_next;
+//            $task_next = $data["task"] + 1;
+//            $session[$cc . 'tabs'] = 'test' . $task_next;
+            $session[$cc . 'active_task'] = +$data["active_task"]+1;
         }
 
 
@@ -184,7 +186,6 @@ class TestingController extends Controller
     {
 
         $session = Yii::$app->session;
-
         $data = Yii::$app->request->post('data');
         $data = json_decode($data, true);
 
@@ -192,14 +193,23 @@ class TestingController extends Controller
 
         $result = new Results();
         $result->userid = Yii::$app->user->id;
+
         $result->caseid = $data["caseid"];
-        $result->mark = ($session[$cc.'sum']*100)/$session[$cc.'kol'];
+
+        if (($session[$cc.'kol']=='')||($session[$cc.'kol']==0)){
+    $result->mark = 0;
+} else {
+    $result->mark = ($session[$cc.'sum']*100)/$session[$cc.'kol'];
+
+}
+
         $result->s_time = $data["date_start_test"];
         $result->f_time = $data["date_end_test"];
 
         $result->save();
 
-        unset($session[$cc.'tabs']);
+//        unset($session[$cc.'tabs']);
+        unset($session[$cc.'active_task']);
         unset($session[$cc.'sum']);
         unset($session[$cc.'kol']);
         unset($session[$cc.'date_start_test']);

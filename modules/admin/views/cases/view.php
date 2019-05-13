@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <p>
         <?= Html::a('Редактировать', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
-<!--        --><?//= Html::a('Создать вопрос', ['tasks/create', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Информационная часть', ['resources/index', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
@@ -39,7 +39,10 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
 
             'name:ntext',
-            'note:ntext',
+            [
+                'attribute'=>'note',
+                'format'=>'html'
+            ],
 //            'time:ntext',
             [
                 'attribute'=>'time',
@@ -55,6 +58,11 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ],
     ]) ?>
+
+
+
+
+
 
     <p class="p_head">Вопросы к кейсу:</p>
     <p>

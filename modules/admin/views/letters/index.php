@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use yii\helpers\StringHelper;
 use yii\helpers\Url;
 
 /* @var $this yii\web\View */
@@ -33,7 +34,18 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'name:ntext',
-            'order',
+                        'order',
+
+            [
+                'attribute'=>'text',
+//                'contentOptions' => ['class' => 'come-class'],
+                'value' => function ($model) {
+                    return StringHelper::truncate($model->text, 300);
+                },
+                'format'=>'html'
+
+            ],
+
 
 //            ['class' => 'yii\grid\ActionColumn'],
         ],

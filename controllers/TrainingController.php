@@ -153,14 +153,17 @@ class TrainingController extends Controller
             if ((int) $session[$tr_cc.'kol_task']==(int) $session[$tr_cc.'kol']){
                 // закрываем сессию
                 unset($session[$tr_cc.'tabs']);
+                unset($session[$tr_cc.'active_task']);
                 unset($session[$tr_cc.'kol']);
 
                 $session->close();
                 // уничтожаем сессию и все связанные с ней данные.
                 $session->destroy();
             } else {
-                $task_next = $data["task"] + 1;
-                $session[$tr_cc.'tabs'] = 'test' . $task_next;
+//                $task_next = $data["task"] + 1;
+//                $session[$tr_cc.'tabs'] = 'test' . $task_next;
+                $session[$tr_cc . 'active_task'] = +$data["active_task"]+1;
+
             }
 
             return $ret;

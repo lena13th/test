@@ -13,6 +13,7 @@
 .wrong_answer{
     /*color: #de0b1d;*/
     color: #d6202f;
+    color: #d6202f;
     /*font-weight:bold*/
 
 }
@@ -55,18 +56,42 @@ a.desc:after {
 .field_check_1{
     width: 70%;
     display: inline-block;
+
 }
 .field_check_2{
-    width: 25%;
+    width: 13%;
     display: inline-block;
     margin-left: 40px;
 }
 .field_check_3{
-    width: 15%;
+    width: 10%;
     display: inline-block;
-    margin-right: 40px;
+    margin-left: 10px;
+}
+.field_check_4{
+    width: 10%;
+    display: inline-block;
+    margin-left: 40px;
 }
 
 #main-sidebar.active {
     padding-left: 150px;
+}
+.display-none {
+    display: none;
+}
+.padd_buttons_1{
+    margin-left: 40px;
+    display: inline-block;
+}
+.padd_buttons_2{
+    margin-left: 10px;
+    display: inline-block;
+}
+.padd_list{
+    padding: 6px 12px;
+    padding-bottom: 8px;
+}
+.modal-radio{
+    margin-left:30px;
 }

@@ -2,19 +2,18 @@
 
 namespace app\modules\admin\controllers;
 
-use app\modules\admin\models\Answers;
 use app\modules\admin\models\Cases;
 use Yii;
-use app\modules\admin\models\Tasks;
+use app\modules\admin\models\Resources;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * TasksController implements the CRUD actions for Tasks model.
+ * ResourcesController implements the CRUD actions for Resources model.
  */
-class TasksController extends Controller
+class ResourcesController extends Controller
 {
     /**
      * {@inheritdoc}
@@ -32,45 +31,46 @@ class TasksController extends Controller
     }
 
     /**
-     * Lists all Tasks models.
+     * Lists all Resources models.
      * @return mixed
      */
     public function actionIndex()
     {
+        $caseid =  Yii::$app->request->get('id');
+        $case = Cases::findOne($caseid);
+
         $dataProvider = new ActiveDataProvider([
-            'query' => Tasks::find(),
+            'query' => Resources::find()->andWhere(['caseid' => $caseid]),
         ]);
 
         return $this->render('index', [
             'dataProvider' => $dataProvider,
+            'caseid'=>$caseid,
+            'casename'=>$case->name,
+
         ]);
     }
 
     /**
-     * Displays a single Tasks model.
+     * Displays a single Resources model.
      * @param integer $id
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-
     public function actionView($id)
     {
-
-        $answers=Answers::find()->where(['taskid' => $id])->all();
-//        $answers=Answers::find()->where(['taskid' => $id])->orderBy([
-//            'text' => SORT_ASC,
-//        ])->all();
-
+        $model = Resources::findOne($id);
+        $case = Cases::findOne($model->caseid);
 
         return $this->render('view', [
-            'model' => $this->findModel($id),
-            'answers' => $answers,
+            'model' => $model,
+            'case'=>$case,
 
         ]);
     }
 
     /**
-     * Creates a new Tasks model.
+     * Creates a new Resources model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
@@ -79,7 +79,7 @@ class TasksController extends Controller
         $caseid =  Yii::$app->request->get('id');
         $case = Cases::findOne($caseid);
 
-        $model = new Tasks();
+        $model = new Resources();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -93,7 +93,7 @@ class TasksController extends Controller
     }
 
     /**
-     * Updates an existing Tasks model.
+     * Updates an existing Resources model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -102,6 +102,7 @@ class TasksController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $case = Cases::findOne($model->caseid);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -109,11 +110,14 @@ class TasksController extends Controller
 
         return $this->render('update', [
             'model' => $model,
+            'caseid'=>$case->id,
+            'casename'=>$case->name,
+
         ]);
     }
 
     /**
-     * Deletes an existing Tasks model.
+     * Deletes an existing Resources model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -121,23 +125,21 @@ class TasksController extends Controller
      */
     public function actionDelete($id)
     {
-        $model=$this->findModel($id);
-        $caseid=$model->caseid;
-        $model->delete();
+        $this->findModel($id)->delete();
 
-        return $this->redirect(['cases/view','id'=>$caseid]);
+        return $this->redirect(['index']);
     }
 
     /**
-     * Finds the Tasks model based on its primary key value.
+     * Finds the Resources model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Tasks the loaded model
+     * @return Resources the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Tasks::findOne($id)) !== null) {
+        if (($model = Resources::findOne($id)) !== null) {
             return $model;
         }
 

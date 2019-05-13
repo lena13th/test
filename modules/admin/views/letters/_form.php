@@ -1,5 +1,6 @@
 <?php
 
+use mihaildev\ckeditor\CKEditor;
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
@@ -21,8 +22,13 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'name')->textarea(['rows' => 3]) ?>
 
-    <?= $form->field($model, 'text')->textarea(['rows' => 6]) ?>
-
+    <?= $form->field($model, 'text')->widget(CKEditor::className(),[
+        'editorOptions' => [
+            'preset' => 'standart', //разработанны стандартные настройки basic, standard, full данную возможность не обязательно использовать
+            'inline' => false, //по умолчанию false
+        ],
+    ]);
+    ?>
     <?= $form->field($model, 'order')->textInput(['style'=>'width:200px']) ?>
 
     <div class="form-group">

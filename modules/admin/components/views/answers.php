@@ -31,7 +31,8 @@
 
         function cmp($a, $b)
         {
-            return strcmp($a["correct"], $b["correct"]);
+            if ($a['correct'] == $b['correct']) return 0;
+            return $a['correct'] > $b['correct'] ? 1 : -1;
         }
 
         usort($answers, "cmp");

@@ -62,6 +62,7 @@ class AnswersController extends Controller
     public function actionUpdate($id)
     {
         $task =Tasks::findOne($id);
+        $savefalse=0;
 //        $models=$task->answers;
 
 
@@ -76,32 +77,45 @@ class AnswersController extends Controller
 
 
 
-        $dataProvider = new \yii\data\ActiveDataProvider([
-            'query' => Answers::find()->where(['taskid'=>$id])->orderBy(['correct' => SORT_ASC])->indexBy('id')
-        ]);
-
-        if ($task->type==3) {
-            $answers = Answers::find()->where(['taskid' => $id])->orderBy([
+        if ($task->type==3) {            $answers = Answers::find()->where(['taskid' => $id])->orderBy([
                 'correct' => SORT_ASC,
             ])->all();
         } else {
             $answers = Answers::find()->where(['taskid' => $id])->orderBy([
                 'text' => SORT_ASC,
             ])->all();
-
         }
 
 //        print_r( Yii::$app->request->post() );
 
         $count = count(Yii::$app->request->post('Answers', []));
-//echo $count;
+        $count_answers = count($answers);
+
+        for($i = 0; $i < ($count-$count_answers); $i++) {
+            $answers[] = new Answers();
+        }
+        for($i = 0; $i < ($count-$count_answers); $i++) {
+            $answers[$count_answers+$i]->taskid=$id;
+        }
+
+
+//        Model::loadMultiple($answers, Yii::$app->request->post());
+//        echo '<pre>';
+//        print_r( $answers );
+//        echo '</pre>';
+
         if (Model::loadMultiple($answers, Yii::$app->request->post()) && Model::validateMultiple($answers)) {
+//        if (Model::loadMultiple($answers, Yii::$app->request->post())) {
             foreach ($answers as $answer) {
 //                echo $answer->correct;
 //                echo '<br>';
                 $answer->save(false);
+//                $answer->save();
             }
             return $this->redirect(['tasks/view', 'id'=> $id]);
+        }
+        if (!(Model::validateMultiple($answers))){
+            $savefalse=1;
         }
 
 //        foreach ($models as $model)
@@ -118,9 +132,19 @@ class AnswersController extends Controller
 
         return $this->render('update', [
             'task' => $task,
-            'dataProvider' => $dataProvider,
             'answers' => $answers,
+            'savefalse' => $savefalse,
         ]);
+    }
+
+    public function actionDelete($id)
+    {
+        $model=$this->findModel($id);
+        $taskid=$model->taskid;
+
+        $model->delete();
+
+        return $this->redirect(['answers/update','id'=>$taskid]);
     }
 
 

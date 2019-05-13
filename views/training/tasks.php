@@ -23,6 +23,15 @@ $session = Yii::$app->session;
 
 <?php
 $tr_cc = 'training.cases'.$case->id.'.';
+
+
+//unset($session[$tr_cc.'tabs']);
+//unset($session[$tr_cc.'active_task']);
+//unset($session[$tr_cc.'kol']);
+//
+//$session->close();
+//// уничтожаем сессию и все связанные с ней данные.
+//$session->destroy();
 ?>
     <div
             class='hidden'
@@ -34,9 +43,15 @@ $tr_cc = 'training.cases'.$case->id.'.';
             tr_kol='<?=$session[$tr_cc.'kol'] ?>'
             tr_kol_task='<?=$session[$tr_cc.'kol_task'] ?>'
 
-
+            active_task='<?=$session[$tr_cc.'active_task'] ?>'
+            <?php
+            $i=1;
+            foreach ($tasks as $task){
+                echo 'idtask_'.$i.'='.$task->id.' ';
+                $i++;
+            }
+            ?>
     ></div>
-
 <div class="card box-shadow-none case">
     <div class="card-content">
         <p class="card-title center-align"><?=$case->name?></p>
@@ -247,11 +262,15 @@ $js = <<<JS
 
 var tabs = document.getElementsByClassName('tabs')[0];
 var instance = M.Tabs.getInstance(tabs);
-var first_tabs = document.getElementsByClassName('hidden')[0].getAttribute('tr_tabs');
+// var first_tabs = document.getElementsByClassName('hidden')[0].getAttribute('tr_tabs');
+var active_task = document.getElementsByClassName('hidden')[0].getAttribute('active_task');
+var first_tabs = document.getElementsByClassName('hidden')[0].getAttribute('idtask_'+active_task);
+
 var tab_1 = document.getElementsByClassName('hidden')[0].getAttribute('tr_tab_1');
-if (first_tabs===''){first_tabs = tab_1}
+if ((first_tabs==='')||(first_tabs===null)){first_tabs = tab_1}
 
 if (first_tabs!=tab_1){
+    first_tabs = 'test'+first_tabs;
     document.getElementsByClassName(tab_1)[0].classList.add('disabled');
     document.getElementsByClassName(first_tabs)[0].classList.remove('disabled');
     instance.select(first_tabs);
@@ -261,6 +280,7 @@ if (first_tabs!=tab_1){
 // if (kol===''){kol = 0}
 var tr_cc = document.getElementsByClassName('hidden')[0].getAttribute('tr_cc');
 
+var active_task = document.getElementsByClassName('hidden')[0].getAttribute('active_task');
 
     $('.answerbutton').click(function(){
         this.classList.add('disabled');
@@ -272,14 +292,20 @@ var tr_cc = document.getElementsByClassName('hidden')[0].getAttribute('tr_cc');
         var caseid = document.getElementsByClassName('hidden')[0].getAttribute('caseid');
         var grfid = document.getElementsByClassName('hidden')[0].getAttribute('grfid');
         var type = test.getElementsByClassName('choice_answers')[0].getAttribute('typename');
-        
+        if (active_task===''){
+            active_task=1;
+        }
+
        
         var data= {};
         data.type = type;
         data.caseid = caseid;
         data.grfid = grfid;
         data.tr_cc = tr_cc;
+        data.active_task = active_task;
+
         var full_selected=1;
+        
         
         if (type == 1){
             var radios = test.getElementsByTagName('input');
@@ -338,10 +364,15 @@ var tr_cc = document.getElementsByClassName('hidden')[0].getAttribute('tr_cc');
                  console.log(res);
                  if (res == 1){
                      M.toast({html: 'Вы ответили верно!'});
-                     var a = +nametest[nametest.length-1]+1;
+                     // var a = +nametest[nametest.length-1]+1;
                      document.getElementsByClassName(nametest)[0].classList.add('disabled');
-                     nametest = nametest.substr(0,4)+a;
+                     // nametest = nametest.substr(0,4)+a;
+                     // var new_nametest = document.getElementsByClassName(nametest)[0];
+                     
+                     active_task++; 
+                     nametest = 'test'+document.getElementsByClassName('hidden')[0].getAttribute('idtask_'+active_task);
                      var new_nametest = document.getElementsByClassName(nametest)[0];
+
                      if (new_nametest !== undefined){
                          new_nametest.classList.remove('disabled');
                          instance.select(nametest);

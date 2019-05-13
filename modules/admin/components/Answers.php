@@ -13,7 +13,7 @@ class Answers extends Widget
 
 //    public $id;
     public $model;
-    public $dataProvider;
+    public $answers;
 
     public function init()
     {
@@ -25,9 +25,8 @@ class Answers extends Widget
 //                Yii::$app->cache->flush();
 
         $model = $this->model;
-        $dataProvider = $this->dataProvider;
 
-        $answers =  $model->answers;
+        $answers =  $this->answers;
 
         return $this->render('answers', compact('answers', 'model'));
 //        return $this->render('answers', compact('dataProvider', 'model'));

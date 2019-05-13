@@ -52,8 +52,10 @@ $this->params['breadcrumbs'][] = $this->title;
     <p>
         <?= Html::a('Редактировать варианты ответа', ['answers/update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
     </p>
-
-    <?= app\modules\admin\components\Answers::widget(['model'=>$model, 'dataProvider'=>$dataProvider]) ?>
-
+    <?php if ($answers){ ?>
+    <?= app\modules\admin\components\Answers::widget(['model'=>$model, 'answers'=>$answers]) ?>
+<?php } else {
+        echo '<p> Вариантов ответа не найдено</p> ';
+    } ?>
 
 </div>

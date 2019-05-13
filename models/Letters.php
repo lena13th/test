@@ -31,7 +31,7 @@ class Letters extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['taskid', 'name', 'text', 'order'], 'required'],
+            [['taskid', 'text', 'order'], 'required'],
             [['taskid', 'order'], 'integer'],
             [['name', 'text'], 'string'],
             [['taskid'], 'exist', 'skipOnError' => true, 'targetClass' => Tasks::className(), 'targetAttribute' => ['taskid' => 'id']],

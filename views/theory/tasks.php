@@ -42,7 +42,12 @@ if (Yii::$app->user->isGuest) {
                     ?>
                     <p>
                         <?=$key.'. '?>
-                        <?= Html::a($resource->name, ['@web/files/'.$resource->link], ['target' => '_blank']) ?>
+<!--                        --><?//= Html::a($resource->name, ['@web/files/'.$resource->link], ['target' => '_blank']) ?>
+<!--                        --><?//= Html::a($resource->name, [$resource->link], ['target' => '_blank']) ?>
+<?php
+if ($resource->name){ echo $resource->name;}
+echo $resource->link
+?>
                     </p>
 
                 <?php endif; ?>
@@ -59,7 +64,7 @@ if (Yii::$app->user->isGuest) {
 
     <?php if( !empty($tasks) ): ?>
         <div class="card-tabs">
-            <ul class="tabs tabs-fixed-width">
+            <ul class="tabs tabs-fixed-width ul_th">
         <?php $i=0;
         foreach ($tasks as $task):
             $i++;
@@ -82,7 +87,9 @@ if (Yii::$app->user->isGuest) {
 
                 <?php if( !empty($letters[$key]) ): ?>
                     <?php foreach ($letters[$key] as $letter): ?>
+                    <?php if ($letter->name){ ?>
                         <p class="h5 center-align"><?=$letter->name?></p>
+                        <?php } ?>
                         <p ><?=$letter->text?></p>
                     <?php endforeach;?>
                 <?php else: ?>

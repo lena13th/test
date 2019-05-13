@@ -3,6 +3,7 @@
 namespace app\modules\admin\controllers;
 
 use app\modules\admin\models\CasesSearch;
+use app\modules\admin\models\Resources;
 use app\modules\admin\models\Tasks;
 use Yii;
 use app\modules\admin\models\Cases;
@@ -58,7 +59,10 @@ class CasesController extends Controller
 //        $tasks = $case->tasks;
         $dataProvider = new ActiveDataProvider([
             'query' => Tasks::find()->where(['caseid'=>$id]),
-            'pagination' => array('pageSize' => 5),
+
+        ]);
+        $dataProvider_info = new ActiveDataProvider([
+            'query' => Resources::find()->where(['caseid'=>$id]),
 
         ]);
 
@@ -66,6 +70,7 @@ class CasesController extends Controller
         return $this->render('view', [
             'model' => $this->findModel($id),
             'dataProvider'=>$dataProvider,
+            'dataProvider_info'=>$dataProvider_info,
         ]);
     }
 

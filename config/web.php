@@ -54,6 +54,69 @@ $config = [
 //
 //        ],
         ],
+    'controllerMap' => [
+//        'elfinder' => [
+//            'class' => 'mihaildev\elfinder\PathController',
+//            'access' => ['@'],
+//            'root' => [
+//                'baseUrl'=>'/web',
+//                // 'basePath'=>'@webroot',
+//                'path' => 'files',
+//                'name' => 'Files',
+//                'options' => ['encoding' => 'UTF-8']
+//
+//            ],
+////            'watermark' => [
+////                'source'         => __DIR__.'/logo.png', // Path to Water mark image
+////                'marginRight'    => 5,          // Margin right pixel
+////                'marginBottom'   => 5,          // Margin bottom pixel
+////                'quality'        => 95,         // JPEG image save quality
+////                'transparency'   => 70,         // Water mark image transparency ( other than PNG )
+////                'targetType'     => IMG_GIF|IMG_JPG|IMG_PNG|IMG_WBMP, // Target image formats ( bit-field )
+////                'targetMinPixel' => 200         // Target image minimum pixel size
+////            ]
+//        ]
+
+        'elfinder' => [
+            'class' => '\mihaildev\elfinder\PathController',
+
+
+
+            'connectOptions' => [
+                'bind' => array(
+                    'mkdir.pre mkfile.pre rename.pre archive.pre' => array(
+                        'Plugin.Sluggable.cmdPreprocess'
+                    ),
+                    'upload.presave' => array(
+                        'Plugin.Sluggable.onUpLoadPreSave'
+                    )
+                ),
+                'plugin' => [
+                    'Sluggable' => [
+                        'enable' => true,
+                        'lowercase' => false,
+                        'replacement' => '-'
+
+                    ],
+                ],
+            ],
+            'root' => [
+                                'baseUrl'=>'/web',
+                // 'basePath'=>'@webroot',
+                'path' => 'files',
+                'name' => 'Files',
+
+
+//                'baseUrl' => '@web/files/global',
+//                'basePath' => '@webroot/files/global',
+                'access' => ['read' => '*', 'write' => '*'],
+//                'name' => 'Name', // Yii::t($category, $message)
+
+
+            ]
+],
+
+    ],
     'components' => [
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
@@ -135,7 +198,7 @@ if (YII_ENV_DEV) {
                     'adminlte' => '@vendor/dmstr/yii2-adminlte-asset/gii/templates/crud/simple',
                 ]
             ],
-            'kartikgii-crud' => ['class' => 'warrence\kartikgii\crud\Generator'],
+//            'kartikgii-crud' => ['class' => 'warrence\kartikgii\crud\Generator'],
         ],
     ];
 }

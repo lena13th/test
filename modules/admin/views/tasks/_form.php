@@ -19,12 +19,13 @@ use yii\widgets\ActiveForm;
     </select><br>
 
 
-
+    <?php if ($create){ ?>
     <label for="type-id" class="control-label">Тип вопроса</label>
     <select name="Tasks[type]" id="type-id" class="form-control">
         <option value="0"></option>
         <?= app\modules\admin\components\TypeId::widget(['model'=>$model]) ?>
     </select><br>
+    <?php } ?>
 
     <?= $form->field($model, 'text')->textarea(['rows' => 3]) ?>
 

@@ -37,6 +37,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'attribute'=>'note',
 //                'contentOptions' => ['class' => 'come-class'],
                 'filter'=>false,
+                'format'=>'html'
+
             ],
 
 //            'name:ntext',

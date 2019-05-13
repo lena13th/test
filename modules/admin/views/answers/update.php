@@ -32,7 +32,7 @@ $this->params['breadcrumbs'][] = 'Редактировать варианты о
 
     <?= $this->render('_form', [
         'task_type' => $task->type,
-        'dataProvider' => $dataProvider,
+        'savefalse' => $savefalse,
         'answers' => $answers,
     ]) ?>
 
