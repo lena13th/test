@@ -34,9 +34,9 @@ class ResourcesController extends Controller
      * Lists all Resources models.
      * @return mixed
      */
-    public function actionIndex()
+    public function actionIndex($caseid)
     {
-        $caseid =  Yii::$app->request->get('id');
+//        $caseid =  Yii::$app->request->get('id');
         $case = Cases::findOne($caseid);
 
         $dataProvider = new ActiveDataProvider([
@@ -74,9 +74,9 @@ class ResourcesController extends Controller
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate()
+    public function actionCreate($caseid)
     {
-        $caseid =  Yii::$app->request->get('id');
+//        $caseid =  Yii::$app->request->get('id');
         $case = Cases::findOne($caseid);
 
         $model = new Resources();
@@ -126,11 +126,13 @@ class ResourcesController extends Controller
     public function actionDelete($id)
     {
         $model = $this->findModel($id);
-        $case = Cases::findOne($model->caseid);
-
+        $caseid = $model->caseid;
+//        $case = Cases::findOne()->where(['id'=>$model->caseid])->all();
         $model->delete();
 
-        return $this->redirect(['index', ['id'=>$case->id]]);
+        return $this->redirect(['index', 'caseid'=>$caseid
+//            'casename'=>$case->name,
+        ]);
     }
 
     /**

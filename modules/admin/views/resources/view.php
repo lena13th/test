@@ -9,7 +9,7 @@ use yii\widgets\DetailView;
 $this->title = $model->name;
 $this->params['breadcrumbs'][] = ['label' => 'Кейсы', 'url' => ['cases/index']];
 $this->params['breadcrumbs'][] = ['label' => $case->name, 'url' => ['cases/view', 'id'=>$case->id]];
-$this->params['breadcrumbs'][] = ['label' => 'Информационная часть', 'url' => ['index', 'id'=>$case->id]];
+$this->params['breadcrumbs'][] = ['label' => 'Информационная часть', 'url' => ['index', 'caseid'=>$case->id]];
 
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
@@ -19,7 +19,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a('Редактировать', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a('Редактировать', ['update', 'caseid' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Удалить', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
