@@ -260,7 +260,9 @@ ul.countdown li p {
 .ul_th{
     height: auto;
 }
-
+.inform{
+    margin-left: 30px;
+}
 /*::-webkit-scrollbar {*/
     /*width: 12px;*/
     /*height: 8px;*/

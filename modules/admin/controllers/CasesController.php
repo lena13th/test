@@ -4,6 +4,7 @@ namespace app\modules\admin\controllers;
 
 use app\modules\admin\models\CasesSearch;
 use app\modules\admin\models\Resources;
+use app\modules\admin\models\Results;
 use app\modules\admin\models\Tasks;
 use Yii;
 use app\modules\admin\models\Cases;
@@ -125,8 +126,17 @@ class CasesController extends Controller
      */
     public function actionDelete($id)
     {
+        $models = Results::find()->where(['caseid'=>$id])->all();
+//        print_r($models);
+        if ($models) {
+            foreach ($models as $model) {
+//                print_r($model);
+//                $res_model=Results::findOne($model->id);
+//                $res_model->delete();
+                $model->delete();
+            }
+        }
         $this->findModel($id)->delete();
-
         return $this->redirect(['index']);
     }
 

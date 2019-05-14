@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 use yii\helpers\Url;
 
-$this->title = 'Электронная образовательная среда';
+$this->title = 'Электронное образовательное приложение';
 
 if (Yii::$app->user->isGuest) {
     return Yii::$app->response->redirect(['site/login']);

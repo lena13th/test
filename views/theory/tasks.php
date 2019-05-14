@@ -26,32 +26,21 @@ if (Yii::$app->user->isGuest) {
 
 
         <?php if( !empty($resources) ): ?>
-
+        <div class="inform">
             <p><b>Информационная часть:</b></p>
             <?php foreach ($resources as $key=>$resource):
-                $key++; ?>
-                <?php if( $resource->type == 0 ):?>
-                    <p><?= $key.'. '.$resource->name.': '?></p>
-                    <div class="center-align">
-                        <?= Html::img('@web/files/'.$resource->link, ['alt' => $resource->name]) ?>
-                    </div>
-                <?php else:
-                    $file = Yii::getAlias('@web/files/1.png');
-//                    return Yii::$app->response->sendFile($file);
+                $key++;
+                $str_start=strpos($resource->link, '">')+2;
+                $str_end=strpos($resource->link, "</a>");
+                $str =  $str_end-$str_start;
+                $new_name = $key.'. '.$resource->name;
+                $new=substr_replace($resource->link, $new_name, $str_start, $str);
+                ?>
 
-                    ?>
-                    <p>
-                        <?=$key.'. '?>
-<!--                        --><?//= Html::a($resource->name, ['@web/files/'.$resource->link], ['target' => '_blank']) ?>
-<!--                        --><?//= Html::a($resource->name, [$resource->link], ['target' => '_blank']) ?>
-<?php
-if ($resource->name){ echo $resource->name;}
-echo $resource->link
-?>
-                    </p>
-
-                <?php endif; ?>
+                   <?= $new ?>
             <?php endforeach;?>
+        </div>
+
         <?php endif; ?>
 
         <div class="right-align">
@@ -60,7 +49,6 @@ echo $resource->link
         </div>
 
     </div>
-
 
     <?php if( !empty($tasks) ): ?>
         <div class="card-tabs">

@@ -37,11 +37,13 @@ if (Yii::$app->user->isGuest) {
 
                         <tbody>
                         <?php foreach ($end_result as $result){ ?>
+                            <?php if ($result['case']){ ?>
                             <tr>
                                 <td><?= $result['case'] ?></td>
                                 <td><?= $result['mark'] ?></td>
                                 <td><?= $result['kol'] ?></td>
                             </tr>
+                                <?php }  ?>
                         <?php } ?>
                         </tbody>
                     </table>

@@ -125,9 +125,12 @@ class ResourcesController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
+        $model = $this->findModel($id);
+        $case = Cases::findOne($model->caseid);
 
-        return $this->redirect(['index']);
+        $model->delete();
+
+        return $this->redirect(['index', ['id'=>$case->id]]);
     }
 
     /**

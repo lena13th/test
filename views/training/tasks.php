@@ -59,25 +59,21 @@ $tr_cc = 'training.cases'.$case->id.'.';
 
 
         <?php if( !empty($resources) ): ?>
-
-            <p><b>Информационная часть:</b></p>
-            <?php $n=0;
-            foreach ($resources as $resource):
-                $n++;?>
-                <?php if( $resource->style == 2 ):?>
-                    <p><?= $n.'. '.$resource->name.': '?></p>
-                    <div class="center-align">
-                <?= Html::img('@web/files/'.$resource->link, ['alt' => $resource->name]) ?>
-                    </div>
-                <?php else:
-                    $file = Yii::getAlias('@web/files/1.png');
-//                    return Yii::$app->response->sendFile($file);
-
+            <div class="inform">
+                <p><b>Информационная часть:</b></p>
+                <?php foreach ($resources as $key=>$resource):
+                    $key++;
+                    $str_start=strpos($resource->link, '">')+2;
+                    $str_end=strpos($resource->link, "</a>");
+                    $str =  $str_end-$str_start;
+                    $new_name = $key.'. '.$resource->name;
+                    $new=substr_replace($resource->link, $new_name, $str_start, $str);
                     ?>
 
+                    <?= $new ?>
+                <?php endforeach;?>
+            </div>
 
-                <?php endif; ?>
-            <?php endforeach;?>
         <?php endif; ?>
 
         <div class="right-align">

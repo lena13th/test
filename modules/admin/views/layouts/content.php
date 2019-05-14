@@ -21,7 +21,7 @@ use dmstr\widgets\Alert;
 </div>
 
 <footer class="main-footer">
-    <span>Электронная образовательная среда </span>
+    <span>Электронное образовательное приложение </span>
 </footer>
 
 <div class='control-sidebar-bg'></div>

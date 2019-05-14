@@ -81,9 +81,7 @@ class AnswersController extends Controller
                 'correct' => SORT_ASC,
             ])->all();
         } else {
-            $answers = Answers::find()->where(['taskid' => $id])->orderBy([
-                'text' => SORT_ASC,
-            ])->all();
+            $answers = Answers::find()->where(['taskid' => $id])->all();
         }
 
 //        print_r( Yii::$app->request->post() );
