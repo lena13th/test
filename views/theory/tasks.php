@@ -16,7 +16,7 @@ if (Yii::$app->user->isGuest) {
     <a href="<?= Url::to(['/theory/index'])?>" class="breadcrumb grey-text text-lighten-1">Теория</a>
     <a href="<?= Url::to(['/theory/view', 'id'=>$grf->id])?>" class="breadcrumb grey-text text-lighten-1 tooltipped"
        data-position="bottom" data-tooltip="<?=$grf->name?>"><?=mb_strimwidth ($grf->name,0, 30, '...')?></a>
-    <a class="breadcrumb grey-text text-lighten-1"><?=$case->name?></a>
+    <a class="breadcrumb grey-text text-lighten-1 bread_none"><?=$case->name?></a>
 </div>
 
 <div class="card box-shadow-none case">

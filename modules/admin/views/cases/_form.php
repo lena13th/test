@@ -32,6 +32,12 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'time')->textInput(['style'=>'width:200px']) ?>
 <p>( 0 - если время выполнения не ограничено )</p>
+
+    <?= $form->field($model, 'use')->dropDownList([
+        '1' => 'Обучение',
+        '2' => 'Проверка знаний',
+    ]);
+    ?>
     <div class="form-group">
         <?= Html::submitButton('Сохранить', ['class' => 'btn btn-success']) ?>
     </div>

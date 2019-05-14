@@ -56,6 +56,18 @@ $this->params['breadcrumbs'][] = $this->title;
 //                $model->getF_skillid($model),
 //                'format'=>'html'
             ],
+            [
+                'attribute'=>'use',
+                'value' => function($data){
+                    if ($data->use==1){
+                        return 'Обучение';
+                    } elseif ($data->use==2) {
+                        return 'Проверка знаний';
+                    }
+                }
+//                $model->getF_skillid($model),
+//                'format'=>'html'
+            ],
         ],
     ]) ?>
 

@@ -81,8 +81,9 @@ AppAsset::register($this);
     <li><a href="<?= Url::to(['theory/index'])?>">Теория</a></li>
     <li><a href="<?= Url::to(['training/index'])?>">Обучение</a></li>
     <li><a href="<?= Url::to(['testing/index'])?>">Проверка знаний</a></li>
-
+    <?php  if (Yii::$app->user->isGuest) { ?>
     <li class="login"><a href="<?= Url::to(['site/login'])?>">Вход/регистрация</a></li>
+    <?php } ?>
 </ul>
 
 

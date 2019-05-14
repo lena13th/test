@@ -12,6 +12,7 @@ use Yii;
  * @property string $name
  * @property string $note
  * @property int $time
+ * @property int $use
  *
  * @property Skillstable $skill
  * @property Resourcestable[] $resourcestables
@@ -34,8 +35,8 @@ class Cases extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['skillid', 'name', 'note', 'time'], 'required'],
-            [['skillid', 'time'], 'integer'],
+            [['skillid', 'name', 'note', 'time','use'], 'required'],
+            [['skillid', 'time','use'], 'integer'],
             [['name', 'note'], 'string'],
             [['skillid'], 'exist', 'skipOnError' => true, 'targetClass' => Skills::className(), 'targetAttribute' => ['skillid' => 'id']],
         ];
@@ -52,6 +53,7 @@ class Cases extends \yii\db\ActiveRecord
             'name' => 'Name',
             'note' => 'Note',
             'time' => 'Time',
+            'use' => 'use',
         ];
     }
 

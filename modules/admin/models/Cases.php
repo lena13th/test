@@ -13,6 +13,7 @@ use yii\helpers\Url;
  * @property string $name
  * @property string $note
  * @property int $time
+ * @property int $use
  *
  * @property Skills $skill
  * @property Resources[] $resources
@@ -35,8 +36,8 @@ class Cases extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['skillid', 'name', 'note', 'time'], 'required'],
-            [['skillid', 'time'], 'integer'],
+            [['skillid', 'name', 'note', 'time','use'], 'required'],
+            [['skillid', 'time','use'], 'integer'],
             [['name', 'note'], 'string'],
             [['skillid'], 'exist', 'skipOnError' => true, 'targetClass' => Skills::className(), 'targetAttribute' => ['skillid' => 'id']],
         ];
@@ -53,6 +54,7 @@ class Cases extends \yii\db\ActiveRecord
             'name' => 'Наименование',
             'note' => 'Описание',
             'time' => 'Время выполнения, мин',
+            'use' => 'Назначение',
         ];
     }
 

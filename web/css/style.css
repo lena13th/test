@@ -263,6 +263,26 @@ ul.countdown li p {
 .inform{
     margin-left: 30px;
 }
+
+nav .sidenav-trigger{
+    margin-top:-10px;
+}
+@media only screen and (max-width: 992px) {
+    nav .brand-logo {
+         left: 60px;
+         -webkit-transform: none;
+         transform: none;
+        font-size: 16px;
+        margin-left: 10px;
+        margin-top: -3px;
+    }
+    .breadcrumb{
+        font-size: 12px;
+    }
+    .bread_none{
+        display: none;
+    }
+}
 /*::-webkit-scrollbar {*/
     /*width: 12px;*/
     /*height: 8px;*/

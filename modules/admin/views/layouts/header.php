@@ -13,9 +13,9 @@ use app\modules\admin\components\BirthdayWidget;
     </a>
     <nav class="navbar navbar-static-top" role="navigation">
 
-<!--        <a href="#" id="menu-toggle" class="sidebar-toggle" data-toggle="sidebar" role="button">-->
-<!--            <span class="sr-only">Toggle navigation</span>-->
-<!--        </a>-->
+        <a href="#" id="menu-toggle" class="sidebar-toggle" data-toggle="sidebar" role="button">
+            <span class="sr-only">Toggle navigation</span>
+        </a>
 
         <div class="navbar-custom-menu">
 
