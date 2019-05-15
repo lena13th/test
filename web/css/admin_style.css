@@ -72,6 +72,10 @@ a.desc:after {
     width: 10%;
     display: inline-block;
     margin-left: 40px;
+}.field_check_7{
+    width: 45%;
+    display: inline-block;
+    margin-left: 10px;
 }
 
 .display-none {
@@ -98,3 +102,31 @@ a.desc:after {
     -o-transform: none;
     transform: none;
 }
+@media (min-width: 767px) {
+    .sidebar-toggle {
+        display: none;
+    }
+}
+@media (max-width: 767px) {
+    .field_check_1{
+        width: 100%;
+    }
+    .field_check_2{
+        width: auto;
+        margin-left: 20px;
+    }
+    .field_check_3{
+        width: auto;
+        margin-left: 20px;
+    }
+    .field_check_4{
+        width: auto;
+    }
+    .field_check_5{
+        width: 65%;
+    }
+    .field_check_6{
+        margin-left: 10px;
+    }
+}
+

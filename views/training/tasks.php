@@ -13,12 +13,12 @@ $session = Yii::$app->session;
 ?>
 
 
-<div class="col s12 nav-wrapper valign-wrapper">
+<div class="col s12 nav-wrapper valign-wrapper breadcrumbs">
     <a href="<?= Url::to(['/site/login'])?>" class="breadcrumb grey-text text-lighten-1">Главная</a>
     <a href="<?= Url::to(['/training/index'])?>" class="breadcrumb grey-text text-lighten-1">Обучение</a>
     <a href="<?= Url::to(['/training/view', 'id'=>$grf->id])?>" class="breadcrumb grey-text text-lighten-1 tooltipped"
        data-position="bottom" data-tooltip="<?=$grf->name?>"><?=mb_strimwidth ($grf->name,0, 30, '...')?></a>
-    <a class="breadcrumb grey-text text-lighten-1"><?=$case->name?></a>
+    <a class="breadcrumb grey-text text-lighten-1 bread_none"><?=$case->name?></a>
 </div>
 
 <?php

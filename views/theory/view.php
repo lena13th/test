@@ -24,7 +24,7 @@ if (Yii::$app->user->isGuest) {
             <a href="<?= Url::to(['/theory/tasks', 'id'=>$case->id, 'grf'=>$parent_page->id]) ?>">
 
                 <span class="title valign-wrapper"><i class="material-icons orange-text text-accent-2">chevron_right</i>Ситуация <?=$i?>. <?= $case->name ?></span>
-                <p class="note"><?= $case->note ?></p>
+                <p class="note"><?= mb_strimwidth ($case->note,0,100,'...') ?></p>
             </a>
         </li>
     <?php endforeach;?>

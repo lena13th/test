@@ -89,16 +89,16 @@ foreach ($answers as $answer_correct) {
                 echo '<span class="span_numb_answ">';
                 echo $answer->correct . '. ';
                 echo '</span>';
-                echo $form->field($answer, "[$index]text", ['options' => ['class' => 'form-group field_check_1']])->label(false);
+                echo $form->field($answer, "[$index]text", ['options' => ['class' => 'form-group field_check_1 field_check_5 ']])->label(false);
                 echo $form->field($answer, "[$index]correct", ['options' => ['class' => 'display-none hidden_correct_field']])->hiddenInput()->label(false);
 
                 if ($answer['_errors']) {
-                    echo Html::button('Удалить', ['class' => 'btn btn-danger field_check_3 delete_new_answer',
-                        'onclick' => 'js:mybuttondelete(' . $answer->id . ');']);
+//                    echo Html::button('Удалить', ['class' => 'btn btn-danger field_check_3 delete_new_answer',
+//                        'onclick' => 'js:mybuttondelete("noid",3);']);
                 } else {
 
                     echo Html::a('Удалить', ['delete', 'id' => $answer->id], [
-                        'class' => 'btn btn-danger field_check_4',
+                        'class' => 'btn btn-danger field_check_4 field_check_6',
                         'data' => [
                             'confirm' => 'Внимание! Перед удалением сохраните изменения!
 Вы уверены что хотите удалить данную запись?',
@@ -130,9 +130,9 @@ foreach ($answers as $answer_correct) {
                 $index2 = $index_answer[$ii][2];
                 echo '<div>';
                 echo $ii . '. ';
-                echo $form->field($answer[1], "[$index1]text", ['options' => ['class' => 'form-group field_check_2']])->label(false);
+                echo $form->field($answer[1], "[$index1]text", ['options' => ['class' => 'form-group field_check_7']])->label(false);
                 echo $form->field($answer[1], "[$index1]correct", ['options' => ['class' => 'display-none']])->hiddenInput()->label(false);
-                echo $form->field($answer[2], "[$index2]text", ['options' => ['class' => 'form-group field_check_2']])->label(false);
+                echo $form->field($answer[2], "[$index2]text", ['options' => ['class' => 'form-group field_check_7']])->label(false);
                 echo $form->field($answer[2], "[$index2]correct", ['options' => ['class' => 'display-none']])->hiddenInput()->label(false);
                 echo '</div>';
 
@@ -310,7 +310,7 @@ $('.answer_new_button').on('click', function() {
         document.getElementsByClassName('new-answer_'+idDivNewAnswer)[0].appendChild(spanNewAnswer_0);       
         
         var divNewAnswer_1 = document.createElement('div');
-        divNewAnswer_1.className = 'form-group field_check_1 field-answers-'+idNewAnswer+'-text required';
+        divNewAnswer_1.className = 'form-group field_check_1 field_check_5 field-answers-'+idNewAnswer+'-text required';
         document.getElementsByClassName('new-answer_'+idDivNewAnswer)[0].appendChild(divNewAnswer_1);
 
         var inputNewAnswer_1 = document.createElement('input');
@@ -340,6 +340,14 @@ $('.answer_new_button').on('click', function() {
         var divNewAnswer_22 = document.createElement('div');
         divNewAnswer_22.className = 'help-block';
         document.getElementsByClassName('new-answer_'+idDivNewAnswer)[0].lastChild.appendChild(divNewAnswer_22);
+
+        var button_1 = document.createElement('button');
+        button_1.type = 'button';
+        button_1.innerHTML = 'Удалить';
+        button_1.className = 'btn btn-danger field_check_4 field_check_6 delete_new_answer';
+        button_1.setAttribute('onclick', 'js:mybuttondelete('+idDivNewAnswer+');');
+        document.getElementsByClassName('new-answer_'+idDivNewAnswer)[0].appendChild(button_1);
+
 
         document.getElementById('null_div').setAttribute('lenghtAnsw',+idNewAnswer+1);
         document.getElementById('null_div').setAttribute('idDivNewAnswer',+idDivNewAnswer+1);
@@ -403,7 +411,7 @@ $('.answer_new_button').on('click', function() {
         document.getElementsByClassName('div_answers')[0].appendChild(divNewAnswer);
 
         var divNewAnswer_1 = document.createElement('div');
-        divNewAnswer_1.className = 'form-group field_check_2 field-answers-'+idNewAnswer+'-text required';
+        divNewAnswer_1.className = 'form-group field_check_7 field-answers-'+idNewAnswer+'-text required';
         document.getElementsByClassName('new-answer_'+idDivNewAnswer)[0].appendChild(divNewAnswer_1);
 
         var inputNewAnswer_1 = document.createElement('input');
@@ -437,7 +445,7 @@ $('.answer_new_button').on('click', function() {
         idNewAnswer++;
                 
         var divNewAnswer_21 = document.createElement('div');
-        divNewAnswer_21.className = 'form-group field_check_2 field-answers-'+idNewAnswer+'-text required';
+        divNewAnswer_21.className = 'form-group field_check_7 field-answers-'+idNewAnswer+'-text required';
         document.getElementsByClassName('new-answer_'+idDivNewAnswer)[0].appendChild(divNewAnswer_21);
 
         var inputNewAnswer_21 = document.createElement('input');
@@ -530,7 +538,7 @@ $('.answer_new_button').on('click', function() {
             }
      
         var divNewAnswer_1 = document.createElement('div');
-        divNewAnswer_1.className = 'form-group field_check_1 field-answers-'+idNewAnswer+'-text required';
+        divNewAnswer_1.className = 'form-group field_check_1 field_check_5 field-answers-'+idNewAnswer+'-text required';
         document.getElementsByClassName('new-answer_'+idDivNewAnswer)[0].appendChild(divNewAnswer_1);
 
         var inputNewAnswer_1 = document.createElement('input');
@@ -561,6 +569,12 @@ $('.answer_new_button').on('click', function() {
         divNewAnswer_22.className = 'help-block';
         document.getElementsByClassName('new-answer_'+idDivNewAnswer)[0].lastChild.appendChild(divNewAnswer_22);
 
+        var button_1 = document.createElement('button');
+        button_1.type = 'button';
+        button_1.innerHTML = 'Удалить';
+        button_1.className = 'btn btn-danger field_check_4 field_check_6 delete_new_answer';
+        button_1.setAttribute('onclick', 'js:mybuttondelete('+idDivNewAnswer+',3);');
+        document.getElementsByClassName('new-answer_'+idDivNewAnswer)[0].appendChild(button_1);
 
         var divs = document.getElementsByClassName('hidden_correct_field');
         var one_tr_hidden_correct=0;
@@ -587,6 +601,7 @@ $('.answer_new_button').on('click', function() {
         option_padd_list.value = +idNewAnswer+1;
         option_padd_list.innerHTML = +idNewAnswer+1;
         document.getElementsByClassName('padd_list')[0].appendChild(option_padd_list);
+
 
 
 //        if (idNewAnswer==9){

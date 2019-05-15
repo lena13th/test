@@ -78,6 +78,7 @@ AppAsset::register($this);
 </nav>
 
 <ul class="sidenav" id="mobile-demo">
+    <li><a href="<?= Url::to(['site/login'])?>">Главная</a></li>
     <li><a href="<?= Url::to(['theory/index'])?>">Теория</a></li>
     <li><a href="<?= Url::to(['training/index'])?>">Обучение</a></li>
     <li><a href="<?= Url::to(['testing/index'])?>">Проверка знаний</a></li>

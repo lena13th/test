@@ -11,7 +11,7 @@ if (Yii::$app->user->isGuest) {
 ?>
 
 
-<div class="col s12 nav-wrapper valign-wrapper">
+<div class="col s12 nav-wrapper valign-wrapper breadcrumbs">
     <a href="<?= Url::to(['/site/login'])?>" class="breadcrumb grey-text text-lighten-1">Главная</a>
     <a href="<?= Url::to(['/theory/index'])?>" class="breadcrumb grey-text text-lighten-1">Теория</a>
     <a href="<?= Url::to(['/theory/view', 'id'=>$grf->id])?>" class="breadcrumb grey-text text-lighten-1 tooltipped"
