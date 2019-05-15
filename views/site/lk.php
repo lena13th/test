@@ -43,9 +43,6 @@ if (Yii::$app->user->isGuest) {
             </div>
             <div class="col s12 m6">
                 <div class="card white">
-                    <div class="card-image lk_image">
-                        <?= Html::img('@web/img/account.png',['class'=>'account_img']) ?>
-                    </div>
                     <div class="card-content center-align info_user">
                         <p class="login"><span > <?= $user->login; ?></span></p>
                         <p><span>Фамилия:</span> <?= $user->f_name; ?></p>

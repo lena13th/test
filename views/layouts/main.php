@@ -110,16 +110,8 @@ AppAsset::register($this);
 <footer class="page-footer white ">
     <div class="container ">
         <div class="row grey-text text-darken-2">
-            <div class="col l6 s12">
+            <div class="col s12">
                 <p>Данная система предназначена для обучения и проверки знаний студентов.</p>
-            </div>
-            <div class="col l4 offset-l2 s12">
-                <h6>Карта сайта</h6>
-                <ul>
-                    <li><a class="grey-text text-darken-2" href="<?= Url::to(['theory/index'])?>">Теория</a></li>
-                    <li><a class="grey-text text-darken-2" href="<?= Url::to(['training/index'])?>">Обучение</a></li>
-                    <li><a class="grey-text text-darken-2" href="<?= Url::to(['testing/index'])?>">Проверка знаний</a></li>
-                </ul>
             </div>
         </div>
     </div>
