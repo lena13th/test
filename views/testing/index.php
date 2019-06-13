@@ -1,6 +1,6 @@
 <?php
 use yii\helpers\Url;
-$this->title = 'Проверка знаний';
+$this->title = 'Проверка умений';
 if (Yii::$app->user->isGuest) {
     return Yii::$app->response->redirect(['site/login']);
 }
@@ -11,7 +11,7 @@ $this->params['active_page'][] = 'testing';
 
 <div class="col s12 nav-wrapper valign-wrapper">
     <a href="<?= Url::to(['/site/login'])?>" class="breadcrumb grey-text text-lighten-1">Главная</a>
-    <a class="breadcrumb grey-text text-lighten-1">Проверка знаний</a>
+    <a class="breadcrumb grey-text text-lighten-1">Проверка умений</a>
 </div>
 
 

@@ -4,14 +4,14 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 
 $this->params['active_page'][] = 'testing';
-$this->title = 'Проверка знаний';
+$this->title = 'Проверка умений';
 
 ?>
 
 
     <div class="col s12 nav-wrapper valign-wrapper">
         <a href="<?= Url::to(['/site/index'])?>" class="breadcrumb grey-text text-lighten-1">Главная</a>
-        <a href="<?= Url::to(['/testing/index'])?>" class="breadcrumb grey-text text-lighten-1">Проверка знаний</a>
+        <a href="<?= Url::to(['/testing/index'])?>" class="breadcrumb grey-text text-lighten-1">Проверка умений</a>
         <a href="<?= Url::to(['/testing/view', 'id'=>$grf->id])?>" class="breadcrumb grey-text text-lighten-1 tooltipped"
            data-position="bottom" data-tooltip="<?=$grf->name?>"><?=mb_strimwidth ($grf->name,0, 30, '...')?></a>
         <a class="breadcrumb grey-text text-lighten-1"><?=$case->name?></a>

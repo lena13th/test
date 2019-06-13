@@ -62,7 +62,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     if ($data->use==1){
                         return 'Обучение';
                     } elseif ($data->use==2) {
-                        return 'Проверка знаний';
+                        return 'Проверка умений';
                     }
                 }
 //                $model->getF_skillid($model),

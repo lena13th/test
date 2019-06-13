@@ -35,7 +35,7 @@ use yii\widgets\ActiveForm;
 
     <?= $form->field($model, 'use')->dropDownList([
         '1' => 'Обучение',
-        '2' => 'Проверка знаний',
+        '2' => 'Проверка умений',
     ]);
     ?>
     <div class="form-group">

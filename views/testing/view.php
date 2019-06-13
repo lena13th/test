@@ -1,7 +1,7 @@
 <?php
 use yii\helpers\Url;
 $this->params['active_page'][] = 'testing';
-$this->title = 'Проверка знаний';
+$this->title = 'Проверка умений';
 if (Yii::$app->user->isGuest) {
     return Yii::$app->response->redirect(['site/login']);
 }
@@ -10,7 +10,7 @@ if (Yii::$app->user->isGuest) {
 
 <div class="col s12 nav-wrapper valign-wrapper breadcrumbs">
     <a href="<?= Url::to(['/site/login'])?>" class="breadcrumb grey-text text-lighten-1">Главная</a>
-    <a href="<?= Url::to(['/testing/index'])?>" class="breadcrumb grey-text text-lighten-1">Проверка знаний</a>
+    <a href="<?= Url::to(['/testing/index'])?>" class="breadcrumb grey-text text-lighten-1">Проверка умений</a>
     <a class="breadcrumb grey-text text-lighten-1 tooltipped" data-position="bottom" data-tooltip="<?=$parent_page->name?>"><?=mb_strimwidth ($parent_page->name,0, 30, '...')?></a>
 </div>
 

@@ -60,7 +60,7 @@ AppAsset::register($this);
                 }
                 ?>
             >
-                <a href="<?= Url::to(['testing/index'])?>">Проверка знаний</a>
+                <a href="<?= Url::to(['testing/index'])?>">Проверка умений</a>
             </li>
 <!--            <li-->
 <!--            --><?php
@@ -81,7 +81,7 @@ AppAsset::register($this);
     <li><a href="<?= Url::to(['site/login'])?>">Главная</a></li>
     <li><a href="<?= Url::to(['theory/index'])?>">Теория</a></li>
     <li><a href="<?= Url::to(['training/index'])?>">Обучение</a></li>
-    <li><a href="<?= Url::to(['testing/index'])?>">Проверка знаний</a></li>
+    <li><a href="<?= Url::to(['testing/index'])?>">Проверка умений</a></li>
     <?php  if (Yii::$app->user->isGuest) { ?>
     <li class="login"><a href="<?= Url::to(['site/login'])?>">Вход/регистрация</a></li>
     <?php } ?>
@@ -111,14 +111,14 @@ AppAsset::register($this);
     <div class="container ">
         <div class="row grey-text text-darken-2">
             <div class="col s12">
-                <p>Данная система предназначена для обучения и проверки знаний студентов.</p>
+                <p>Данная система предназначена для формирования и оценки умений студентов.</p>
             </div>
         </div>
     </div>
     <div class="footer-copyright white grey-text text-darken-2 container">
         <div>
             <span class="right-align">
-            2018  Разработал студент 41-15 группы Фаскин Виктор.
+            2018-2019  Разработал студент 41-15 группы Фаскин Виктор.
             </span>
         </div>
     </div>

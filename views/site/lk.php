@@ -25,7 +25,7 @@ if (Yii::$app->user->isGuest) {
                     <ul class="collection">
                         <a class="lk_a collection-item" href="<?= Url::to(['theory/index'])?>">Перейти к изучению теории</a>
                         <a class="lk_a collection-item" href="<?= Url::to(['training/index'])?>">Начать обучение</a>
-                        <a class="lk_a collection-item" href="<?= Url::to(['testing/index'])?>">Проверить знания</a>
+                        <a class="lk_a collection-item" href="<?= Url::to(['testing/index'])?>">Проверить умения</a>
                     </ul>
 
                     <ul class="collection a_admin">
@@ -35,7 +35,7 @@ if (Yii::$app->user->isGuest) {
                     <?php if ($user->type ==2) { ?>
 
                     <ul class="collection a_admin">
-                        <a class="lk_a collection-item" href="<?= Url::to(['/admin'])?>">Перейти к административную панель</a>
+                        <a class="lk_a collection-item" href="<?= Url::to(['/admin'])?>">Перейти в административную панель</a>
                     </ul>
 
                     <?php } ?>

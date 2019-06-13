@@ -7,7 +7,7 @@ if (Yii::$app->user->isGuest) {
 }
 
 $this->params['active_page'][] = 'testing';
-$this->title = 'Проверка знаний';
+$this->title = 'Проверка умений';
 
 $session = Yii::$app->session;
 $cc = 'cases'.$case->id.'.';
@@ -28,7 +28,7 @@ $cc = 'cases'.$case->id.'.';
 
     <div class="col s12 nav-wrapper valign-wrapper breadcrumbs">
         <a href="<?= Url::to(['/site/login'])?>" class="breadcrumb grey-text text-lighten-1">Главная</a>
-        <a href="<?= Url::to(['/testing/index'])?>" class="breadcrumb grey-text text-lighten-1">Проверка знаний</a>
+        <a href="<?= Url::to(['/testing/index'])?>" class="breadcrumb grey-text text-lighten-1">Проверка умений</a>
         <a href="<?= Url::to(['/testing/view', 'id'=>$grf->id])?>" class="breadcrumb grey-text text-lighten-1 tooltipped"
            data-position="bottom" data-tooltip="<?=$grf->name?>"><?=mb_strimwidth ($grf->name,0, 30, '...')?></a>
         <a class="breadcrumb grey-text text-lighten-1 bread_none"><?=$case->name?></a>
@@ -42,9 +42,9 @@ $cc = 'cases'.$case->id.'.';
     <!-- Modal Structure -->
     <div id="modal1" class="modal">
         <div class="modal-content ">
-            <h4 class="center-align">Тест с ограничением по времени</h4>
-            <p>Время на тест ограничено и равно <?= $case->time ?> минут. Будет идти обратный отсчет времени с момента начала вашей попытки, и вы должны
-                завершить тест до окончания времени. Вы уверены, что хотите начать прямо сейчас?</p>
+            <h4 class="center-align">Проверка умений с ограничением по времени</h4>
+            <p>Время на прохождение проверки ограничено и равно <?= $case->time ?> минут. Будет идти обратный отсчет времени с момента начала вашей попытки, и вы должны
+                ответить на вопросы до окончания времени. Вы уверены, что хотите начать прямо сейчас?</p>
         </div>
         <div class="modal-footer">
             <a href="<?= Url::to(['/testing/view', 'id'=>$grf->id])?>" class="modal-close waves-effect waves-red btn-flat">Отмена</a>

@@ -71,7 +71,7 @@ if (Yii::$app->user->isGuest) {
         <div class="card-content grey lighten-4">
         <?php foreach ($tasks as $key=>$task): ?>
             <div id="<?='test' . $task->id?>">
-                <p><b><?= $task->text ?></b></p><br>
+<!--                <p><b>--><?//= $task->text ?><!--</b></p><br>-->
 
                 <?php if( !empty($letters[$key]) ): ?>
                     <?php foreach ($letters[$key] as $letter): ?>

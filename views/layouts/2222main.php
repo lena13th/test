@@ -48,7 +48,7 @@ AppAsset::register($this);
                 ['label' => 'Главная', 'url' => ['/site/index']],
                 ['label' => 'Теория', 'url' => ['/site/theory']],
                 ['label' => 'Обучение', 'url' => ['/site/training']],
-                ['label' => 'Проверка знаний', 'url' => ['/site/testing']],
+                ['label' => 'Проверка умений', 'url' => ['/site/testing']],
             ],
         ]);
         NavBar::end();
